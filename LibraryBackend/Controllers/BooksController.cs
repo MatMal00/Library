@@ -8,7 +8,7 @@ using LibraryBackend.Mappers;
 namespace LibraryBackend.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/books")]
     public class BooksController : ControllerBase
     {
         private readonly LibraryContext _context;
@@ -18,7 +18,7 @@ namespace LibraryBackend.Controllers
             _context = context;
         }
 
-        // GET: api/Books
+        // GET: api/books
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BookResponse>>> GetBooks()
         {
@@ -28,7 +28,7 @@ namespace LibraryBackend.Controllers
             return books.Select(b => BookMapper.ToBookResponseModel(b, categories)).ToList();    
         }
 
-        // GET: api/Books/5
+        // GET: api/books/5
         [HttpGet("{id}")]
         public async Task<ActionResult<BookResponse>> GetBook(int id)
         {

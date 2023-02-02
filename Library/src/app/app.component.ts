@@ -4,23 +4,31 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public forecasts?: WeatherForecast[];
+  public books?: Book[];
 
   constructor(http: HttpClient) {
-    http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
+    http.get<Book[]>('/api/books').subscribe(
+      (result) => {
+        this.books = result;
+      },
+      (error) => console.error(error)
+    );
   }
 
   title = 'Library';
 }
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+interface Book {
+  id: number;
+  title: string;
+  author: string;
+  bookDescription: string;
+  categoryName: string;
+  imageUrl: string;
+  isRentable: boolean;
+  price: number;
+  quantity: number;
 }
