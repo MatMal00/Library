@@ -37,12 +37,6 @@ namespace LibraryBackend.Context
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.BookId).HasColumnName("bookId");
-
-                entity.HasOne(d => d.Book)
-                    .WithMany(p => p.Bestsellers)
-                    .HasForeignKey(d => d.BookId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__bestselle__bookI__3A81B327");
             });
 
             modelBuilder.Entity<Book>(entity =>
@@ -81,11 +75,7 @@ namespace LibraryBackend.Context
                     .HasMaxLength(100)
                     .HasColumnName("title");
 
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.Books)
-                    .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__books__categoryI__2B3F6F97");
+                entity.HasOne(d => d.Category);
             });
 
             modelBuilder.Entity<Category>(entity =>
@@ -110,12 +100,6 @@ namespace LibraryBackend.Context
                 entity.Property(e => e.OrderStatusId).HasColumnName("orderStatusId");
 
                 entity.Property(e => e.UserId).HasColumnName("userId");
-
-                entity.HasOne(d => d.Book)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.BookId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__orders__bookId__35BCFE0A");
 
                 entity.HasOne(d => d.OrderStatus)
                     .WithMany(p => p.Orders)
@@ -159,11 +143,6 @@ namespace LibraryBackend.Context
 
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
-                entity.HasOne(d => d.Book)
-                    .WithMany(p => p.RentedBooks)
-                    .HasForeignKey(d => d.BookId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__rentedBoo__bookI__300424B4");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.RentedBooks)

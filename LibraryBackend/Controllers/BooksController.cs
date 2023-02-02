@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LibraryBackend.Models;
 using LibraryBackend.Context;
+using LibraryBackend.ResponseModels;
+using LibraryBackend.Mappers;
 
 namespace LibraryBackend.Controllers
 {
@@ -23,14 +20,17 @@ namespace LibraryBackend.Controllers
 
         // GET: api/Books
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
+        public async Task<ActionResult<IEnumerable<BookResponse>>> GetBooks()
         {
-            return await _context.Books.ToListAsync();
+            var books = await _context.Books.ToListAsync();
+            var categories = await _context.Categories.ToListAsync();
+
+            return books.Select(b => BookMapper.ToBookResponseModel(b, categories)).ToList();    
         }
 
         // GET: api/Books/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Book>> GetBook(int id)
+        public async Task<ActionResult<BookResponse>> GetBook(int id)
         {
             var book = await _context.Books.FindAsync(id);
 
@@ -39,7 +39,10 @@ namespace LibraryBackend.Controllers
                 return NotFound();
             }
 
-            return book;
+            var categories = await _context.Categories.ToListAsync();
+
+
+            return BookMapper.ToBookResponseModel(book, categories);
         }
 
         // PUT: api/Books/5
@@ -105,4 +108,6 @@ namespace LibraryBackend.Controllers
             return _context.Books.Any(e => e.Id == id);
         }
     }
+
+ 
 }
