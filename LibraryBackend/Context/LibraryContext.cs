@@ -74,8 +74,6 @@ namespace LibraryBackend.Context
                     .IsRequired()
                     .HasMaxLength(100)
                     .HasColumnName("title");
-
-                entity.HasOne(d => d.Category);
             });
 
             modelBuilder.Entity<Category>(entity =>
