@@ -34,7 +34,7 @@ namespace LibraryBackend.Context
             {
                 entity.ToTable("bestsellers");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
 
                 entity.Property(e => e.BookId).HasColumnName("bookId");
             });
@@ -43,7 +43,7 @@ namespace LibraryBackend.Context
             {
                 entity.ToTable("books");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Author)
                     .IsRequired()
@@ -80,7 +80,7 @@ namespace LibraryBackend.Context
             {
                 entity.ToTable("categories");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CategoryName)
                     .HasMaxLength(20)
@@ -91,7 +91,7 @@ namespace LibraryBackend.Context
             {
                 entity.ToTable("orders");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
 
                 entity.Property(e => e.BookId).HasColumnName("bookId");
 
@@ -116,7 +116,7 @@ namespace LibraryBackend.Context
             {
                 entity.ToTable("orderStatuses");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(20)
@@ -127,7 +127,7 @@ namespace LibraryBackend.Context
             {
                 entity.ToTable("rentedBooks");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
 
                 entity.Property(e => e.BookId).HasColumnName("bookId");
 
@@ -153,7 +153,7 @@ namespace LibraryBackend.Context
             {
                 entity.ToTable("roles");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
 
                 entity.Property(e => e.RoleName)
                     .HasMaxLength(20)
@@ -164,7 +164,7 @@ namespace LibraryBackend.Context
             {
                 entity.ToTable("users");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Email)
                     .IsRequired()
