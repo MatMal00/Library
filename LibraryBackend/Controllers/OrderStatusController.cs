@@ -62,7 +62,7 @@ namespace LibraryBackend.Controllers
         // POST: api/OrderStatus
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<OrderStatus>> PostOrderStatus(OrderStatus orderStatus)
+        public async Task<ActionResult> PostOrderStatus(OrderStatus orderStatus)
         {
             _context.OrderStatuses.Add(orderStatus);
             await _context.SaveChangesAsync();
