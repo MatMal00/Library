@@ -55,7 +55,9 @@ namespace LibraryBackend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrder(int id, OrderPutRequest order)
         {
-            if (id != order.Id)
+            var orderDb = await _context.Orders.FindAsync(id);
+
+            if (orderDb == null)
             {
                 return BadRequest();
             }
@@ -78,7 +80,7 @@ namespace LibraryBackend.Controllers
                 }
             }
 
-            return NoContent();
+            return new EmptyResult();
         }
 
         // POST: api/Orders
@@ -97,12 +99,12 @@ namespace LibraryBackend.Controllers
 
             book.Quantity -= 1;
 
-            _context.Orders.Add(new Order() { BookId = order.BookId, Id = order.Id, OrderStatusId = 3, UserId = order.UserId });
-            _context.Update(book);
+            _context.Orders.Add(new Order() { BookId = order.BookId, OrderStatusId = 3, UserId = order.UserId });
+            _context.Books.Update(book);
 
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrder", new { id = order.Id }, order);
+            return new EmptyResult();
         }
 
         // DELETE: api/Orders/5
