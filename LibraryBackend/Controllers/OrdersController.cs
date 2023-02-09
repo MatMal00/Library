@@ -84,9 +84,22 @@ namespace LibraryBackend.Controllers
         // POST: api/Orders
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<Order>> PostOrder(OrderPostRequest order)
         {
-            _context.Orders.Add(order);
+            var book = await _context.Books.FindAsync(order.BookId);
+            var user = await _context.Books.FindAsync(order.UserId);
+
+
+            if (book == null || book.Quantity < 1 || user == null)
+            {
+                return BadRequest("There is no more books like this");
+            }
+
+            book.Quantity -= 1;
+
+            _context.Orders.Add(new Order() { BookId = order.BookId, Id = order.Id, OrderStatusId = 3, UserId = order.UserId });
+            _context.Update(book);
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetOrder", new { id = order.Id }, order);
