@@ -1,6 +1,4 @@
-﻿using LibraryBackend.Models;
-
-namespace LibraryBackend.ResponseModels
+﻿namespace LibraryBackend.ResponseModels
 {
     public class UserSimplifiedResponse
     {
