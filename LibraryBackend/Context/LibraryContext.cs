@@ -98,12 +98,6 @@ namespace LibraryBackend.Context
                 entity.Property(e => e.OrderStatusId).HasColumnName("orderStatusId");
 
                 entity.Property(e => e.UserId).HasColumnName("userId");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__orders__userId__36B12243");
             });
 
             modelBuilder.Entity<OrderStatus>(entity =>
@@ -181,12 +175,6 @@ namespace LibraryBackend.Context
                     .HasColumnName("password_hash");
 
                 entity.Property(e => e.RoleId).HasColumnName("roleId");
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__users__roleId__267ABA7A");
             });
 
             OnModelCreatingPartial(modelBuilder);

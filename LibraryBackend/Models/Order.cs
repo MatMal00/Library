@@ -11,9 +11,5 @@ namespace LibraryBackend.Models
         public int BookId { get; set; }
         public int UserId { get; set; }
         public int OrderStatusId { get; set; }
-
-        public virtual Book Book { get; set; }
-        public virtual OrderStatus OrderStatus { get; set; }
-        public virtual User User { get; set; }
     }
 }
