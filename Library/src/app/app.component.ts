@@ -1,22 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
-interface Book {
-  id: number;
-  title: string;
-  author: string;
-  bookDescription: string;
-  categoryName: string;
-  imageUrl: string;
-  isRentable: boolean;
-  price: number;
-  quantity: number;
-}
+import { Book } from './shared/models/book.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   books?: Book[];
@@ -25,7 +14,6 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    
     this.http.get<Book[]>('/api/books').subscribe({
       next: (result: Book[]) => {
         this.books = result;
