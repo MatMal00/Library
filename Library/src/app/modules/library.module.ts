@@ -6,10 +6,11 @@ import { SharedModule } from 'src/app/shared.module';
 import { LibraryRoutingModule } from './library-routing.module';
 import { RouterModule } from '@angular/router';
 import { RentalComponent } from './rental/rental.component';
+import { ShopComponent } from './shop/shop.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, RentalComponent],
+  declarations: [HomeComponent, RentalComponent, ShopComponent],
   imports: [CommonModule, SharedModule, LibraryRoutingModule, RouterModule],
   bootstrap: [AppComponent],
 })
