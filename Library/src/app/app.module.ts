@@ -3,14 +3,16 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from './shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import { LibraryModule } from './modules/library.module';
+import { HomeComponent } from './modules/home/home.component';
+import { RentalComponent } from './modules/rental/rental.component';
+import { ShopComponent } from './modules/shop/shop.component';
 
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, HttpClientModule, SharedModule, AppRoutingModule, LibraryModule],
+  declarations: [AppComponent, HomeComponent, RentalComponent, ShopComponent],
+  imports: [BrowserModule, HttpClientModule, SharedModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent, HomeComponent, RentalComponent, ShopComponent],
 })
 export class AppModule {}
