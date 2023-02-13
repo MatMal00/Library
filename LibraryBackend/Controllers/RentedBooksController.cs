@@ -82,8 +82,8 @@ namespace LibraryBackend.Controllers
 
         // PUT: api/RentedBooks/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutRentedBook(int id, RentedBookPutRequests rentedBook)
+        [HttpPut("return/{id}")]
+        public async Task<IActionResult> ReturnBook(int id)
         {
             var rented = await _context.RentedBooks.FindAsync(id);
 
@@ -94,7 +94,7 @@ namespace LibraryBackend.Controllers
             var book = await _context.Books.FindAsync(id);
 
             book.Quantity += 1;
-            rented.DateOfReturn = rentedBook.DateOfReturn;
+            rented.DateOfReturn = DateTime.Now;
 
             _context.Books.Update(book);
             _context.Entry(rented).State = EntityState.Modified;
@@ -126,9 +126,12 @@ namespace LibraryBackend.Controllers
             var user = await _context.Users.FindAsync(rentedBook.UserId);
             var book = await _context.Books.FindAsync(rentedBook.BookId);
 
-            if (book == null || user == null) return BadRequest();
+            if (book == null || user == null) return BadRequest("Not found");
 
-            _context.RentedBooks.Add(new RentedBook() { BookId = rentedBook.BookId, UserId = rentedBook.UserId, RentalDate = new DateTime() });
+            if (book.IsRentable == false) return BadRequest("Tej książki nie można wypożyczyć");
+
+
+            _context.RentedBooks.Add(new RentedBook() { BookId = rentedBook.BookId, UserId = rentedBook.UserId, RentalDate = DateTime.Now });
             await _context.SaveChangesAsync();
 
             return NoContent();
