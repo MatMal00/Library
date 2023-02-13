@@ -50,6 +50,38 @@ namespace LibraryBackend.Controllers
             };
         }
 
+        // GET: api/Orders/5
+        [HttpGet("user/{id}")]
+        public async Task<ActionResult<IEnumerable<OrderResponse>>> GetOrderByUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var orders = await _context.Orders.ToListAsync();
+            var userOrders = orders.FindAll(x => x.UserId == id);
+
+            var categories = await _context.Categories.ToListAsync();
+            var books = await _context.Books.ToListAsync();
+            var statuses = await _context.OrderStatuses.ToListAsync();
+
+            return userOrders.Select(order => new OrderResponse()
+            {
+                Id = order.Id,
+                Book = BookMapper.ToBookResponseModel(books.Find(book => book.Id == order.Id), categories),
+                User = new UserSimplifiedResponse()
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    Lastname = user.Lastname
+                },
+                OrderStatus = statuses.First(status => status.Id == order.OrderStatusId)
+            }).ToList();
+        }
+
         // PUT: api/Orders/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

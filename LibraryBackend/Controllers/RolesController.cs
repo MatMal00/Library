@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LibraryBackend.Context;
 using LibraryBackend.Models;
+using Microsoft.Win32;
 
 namespace LibraryBackend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/role")]
     [ApiController]
     public class RolesController : ControllerBase
     {
@@ -21,11 +22,19 @@ namespace LibraryBackend.Controllers
             _context = context;
         }
 
-        // GET: api/Roles
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Role>>> GetRoles()
         {
             return await _context.Roles.ToListAsync();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Role>>> CreateRole(Role role)
+        {
+            _context.Roles.Add(new Role() { RoleName = role.RoleName });
+            await _context.SaveChangesAsync();
+
+            return new EmptyResult();
         }
 
         private bool RoleExists(int id)
