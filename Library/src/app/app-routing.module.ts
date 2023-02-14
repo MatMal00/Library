@@ -7,8 +7,9 @@ import { ShopComponent } from './modules/shop/shop.component';
 
 const routes: Routes = [
   {
-    path: 'Home',
+    path: '',
     component: HomeComponent,
+    pathMatch: 'full',
   },
   {
     path: 'Rental',
