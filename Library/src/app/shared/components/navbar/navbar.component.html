@@ -5,11 +5,12 @@
   </div>
   <nav class="nav">
     <ul class="nav__tabs">
-      <li class="nav__tabs--link"><a href="#">Strona główna</a></li>
-      <li class="nav__tabs--link"><a href="#">Wypożyczalnia</a></li>
-      <li class="nav__tabs--link"><a href="#">Sklep</a></li>
-      <li class="nav__tabs--link"><a href="#">Profil</a></li>
-      <a href="#"><button class="nav__tabs--button">Zaloguj się</button></a>
+      <li class="nav__tabs--link"><a [routerLink]="['/']">Home Page</a></li>
+      <li class="nav__tabs--link">
+        <a [routerLink]="['/Rental']">Rental</a>
+      </li>
+      <li class="nav__tabs--link"><a [routerLink]="['/Shop']">Online Shop</a></li>
+      <a href="#"><button class="nav__tabs--button">Sign In</button></a>
     </ul>
   </nav>
 </header>

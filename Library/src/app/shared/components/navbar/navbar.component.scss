@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 10%;
+  padding: 20px 10%;
+  background-color: #000;
 }
 
 .nav {
@@ -11,27 +12,28 @@
 
     &--link {
       display: inline-block;
+      margin-top: 10px;
       padding: 0 20px;
 
       a {
         transition: all 0.3s ease 0s;
 
         &:hover {
-          color: #0088a9;
+          color: red;
         }
       }
     }
 
     &--button {
-      padding: 9px 25px;
-      background-color: #0088a9;
+      padding: 8px 25px;
+      background-color: red;
       border: none;
       border-radius: 50px;
       transition: all 0.3s ease 0s;
       cursor: pointer;
 
       &:hover {
-        background-color: #0087a9a8;
+        background-color: rgba(255, 0, 0, 0.63);
       }
     }
 
