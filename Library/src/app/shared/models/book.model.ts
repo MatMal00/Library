@@ -8,4 +8,5 @@ export interface Book {
   isRentable: boolean;
   price: number;
   quantity: number;
+  rating: string;
 }
