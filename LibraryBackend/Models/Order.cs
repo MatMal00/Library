@@ -2,14 +2,18 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LibraryBackend.Models
 {
     public partial class Order
     {
         public int Id { get; set; }
+        [Required]
         public int BookId { get; set; }
+        [Required]
         public int UserId { get; set; }
+        [Required]
         public int OrderStatusId { get; set; }
     }
 }

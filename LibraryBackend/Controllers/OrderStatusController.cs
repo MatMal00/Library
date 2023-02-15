@@ -10,7 +10,7 @@ using LibraryBackend.Models;
 
 namespace LibraryBackend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/orderStatus")]
     [ApiController]
     public class OrderStatusController : ControllerBase
     {

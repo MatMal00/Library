@@ -2,12 +2,14 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LibraryBackend.Models
 {
     public partial class Bestseller
     {
         public int Id { get; set; }
+        [Required]
         public int BookId { get; set; }
         public virtual Book Book { get; set; }
     }
