@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 import { Book } from 'src/app/shared/models/book.model';
 
 @Component({
@@ -17,6 +18,8 @@ export class RentalComponent implements OnInit {
     this.http.get<Book[]>('/api/books').subscribe({
       next: (result: Book[]) => {
         this.books = result;
+
+        console.log(this.books);
       },
       error: (error: object) => {
         console.log(error);
