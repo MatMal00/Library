@@ -14,5 +14,12 @@ export class BooksService {
   public getBooks(): Observable<Book[]> {
     return this._http.get<Book[]>('/api/books');
   }
-  
+
+  public getOrderStatus(): Observable<any> {
+    return this._http.get<any>('/api/OrderStatus');
+  }
+
+  public getCategories(): Observable<any> {
+    return this._http.get<any>('/api/categories');
+  }
 }

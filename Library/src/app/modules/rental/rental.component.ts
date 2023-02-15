@@ -16,5 +16,9 @@ export class RentalComponent implements OnInit {
     this.booksService.getBooks().subscribe((result: Book[]) => {
       this.books = result.filter((x: Book) => x.isRentable === true);
     });
+
+    this.booksService.getCategories().subscribe((x) => {
+      console.log(x);
+    });
   }
 }

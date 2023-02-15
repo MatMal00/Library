@@ -1,7 +1,7 @@
 const PROXY_CONFIG = [
   {
-    context: ["/api/books"],
-    target: "https://localhost:7283",
+    context: ['/api/books', '/api/OrderStatus', '/api/categories'],
+    target: 'https://localhost:7283',
     secure: false,
   },
 ];
