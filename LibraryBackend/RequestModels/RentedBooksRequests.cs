@@ -4,7 +4,6 @@ namespace LibraryBackend.RequestModels
 {
     public class RentedBookPutRequests
     {
-        public DateTime DateOfReturn { get; set; }
     }
 
     public class RentedBookPostRequests
