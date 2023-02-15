@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
 import { Book } from 'src/app/shared/models/book.model';
+import { BooksService } from 'src/app/shared/services/books.service';
 
 @Component({
   selector: 'app-rental',
@@ -10,20 +9,12 @@ import { Book } from 'src/app/shared/models/book.model';
 })
 export class RentalComponent implements OnInit {
   books?: Book[];
-  title: string = 'Library';
 
-  constructor(private http: HttpClient) {}
+  constructor(private booksService: BooksService) {}
 
-  ngOnInit(): void {
-    this.http.get<Book[]>('/api/books').subscribe({
-      next: (result: Book[]) => {
-        this.books = result;
-
-        console.log(this.books);
-      },
-      error: (error: object) => {
-        console.log(error);
-      },
+  public ngOnInit(): void {
+    this.booksService.getBooks().subscribe((result: Book[]) => {
+      this.books = result.filter((x: Book) => x.isRentable === true);
     });
   }
 }

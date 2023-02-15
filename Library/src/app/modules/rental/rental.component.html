@@ -1,4 +1,9 @@
-<ng-container *ngIf="books">
+<ng-container>
+  <div class="title-container">
+    <h3 class="page-title">RENTAL BOOKS</h3>
+    <h4 class="page-subtitle">- Check our offer -</h4>
+  </div>
+
   <div class="box-container">
     <div class="box" *ngFor="let book of books">
       <div class="image">
@@ -6,8 +11,8 @@
       </div>
 
       <div class="info">
-        <h3 class="title">{{ book.title }}</h3>
-        <h3 class="title">{{ book.author }}</h3>
+        <h3 class="title">"{{ book.title }}"</h3>
+        <h3 class="title">Author: {{ book.author }}</h3>
         <div class="subinfo">
           <div class="price">{{ book.price }} zl</div>
           <div class="stars">

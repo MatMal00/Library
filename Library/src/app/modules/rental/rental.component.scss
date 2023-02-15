@@ -1,15 +1,32 @@
+.title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+
+  .page-title {
+    font-size: 80px;
+  }
+
+  .page-subtitle {
+    color: red;
+    font-size: 50px;
+  }
+}
+
 .box-container {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  background-color: #ccc;
 }
 
 .box {
-  flex: 1 1 1 300px;
+  flex: 1 1 300px;
   background: #fff;
   border: 1px solid rgba(0, 0, 0.3);
   position: relative;
+  border-radius: 10px;
   overflow: hidden;
   margin: 20px;
 }
@@ -20,17 +37,16 @@
   text-align: center;
 }
 .box .image img {
-  height: 200px;
+  height: 330px;
   width: 250px;
-  object-fit: cover;
-  background-size: contain;
+  background-size: cover;
   filter: drop-shadow(0 3px 50px rgba(0, 0, 0, 0.7));
 }
 
 .box .info .title {
   padding: 10px;
-  color: #666;
-  font-size: 20px;
+  font-size: 18px;
+  white-space: nowrap;
 }
 
 .box .info .subinfo {
@@ -43,7 +59,7 @@
 
 .box .info .subinfo .price {
   color: red;
-  font-size: 20;
+  font-size: 20px;
 }
 
 .box .overlay {
@@ -52,7 +68,6 @@
   left: 0;
   height: 223px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,5 +81,4 @@
   padding: 13px 15px;
   font-size: 25px;
   transform: translateY(-150px);
-
 }

@@ -1,1 +1,33 @@
-<p>shop works!</p>
+<ng-container>
+  <div class="title-container">
+    <h3 class="page-title">ONLINE SHOP</h3>
+    <h4 class="page-subtitle">- Check our offer -</h4>
+  </div>
+
+  <div class="box-container">
+    <div class="box" *ngFor="let book of books">
+      <div class="image">
+        <img src="{{ book.imageUrl }}" alt="book" />
+      </div>
+
+      <div class="info">
+        <h3 class="title">"{{ book.title }}"</h3>
+        <h3 class="title">Author: {{ book.author }}</h3>
+        <div class="subinfo">
+          <div class="price">{{ book.price }} zl</div>
+          <div class="stars">
+            <img src="../../../assets/icons/grade_FILL1_wght400_GRAD0_opsz48.svg" />
+            <img src="../../../assets/icons/grade_FILL1_wght400_GRAD0_opsz48.svg" />
+            <img src="../../../assets/icons/grade_FILL1_wght400_GRAD0_opsz48.svg" />
+            <img src="../../../assets/icons/grade_FILL1_wght400_GRAD0_opsz48.svg" />
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay">
+        <img style="--i: 1" src="../../../assets/icons/shopping_cart_FILL0_wght400_GRAD0_opsz48.svg" />
+        <img style="--i: 2" src="../../../assets/icons/favorite_FILL1_wght400_GRAD0_opsz48.svg" />
+      </div>
+    </div>
+  </div>
+</ng-container>
