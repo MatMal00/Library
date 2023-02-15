@@ -15,7 +15,8 @@ namespace LibraryBackend.Mappers
             IsRentable = book.IsRentable,
             Price = book.Price,
             Quantity = book.Quantity,
-            Title = book.Title
+            Title = book.Title,
+            Rating = book.Rating
         };
     }
 }

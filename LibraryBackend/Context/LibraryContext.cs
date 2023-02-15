@@ -74,6 +74,10 @@ namespace LibraryBackend.Context
                     .IsRequired()
                     .HasMaxLength(100)
                     .HasColumnName("title");
+
+                entity.Property(e => e.Rating)
+                 .HasMaxLength(4)
+                 .HasColumnName("rating");
             });
 
             modelBuilder.Entity<Category>(entity =>

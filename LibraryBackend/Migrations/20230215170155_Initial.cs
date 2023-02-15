@@ -6,11 +6,32 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LibraryBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "books",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    author = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    bookDescription = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: true),
+                    imageUrl = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    categoryId = table.Column<int>(type: "int", nullable: false),
+                    price = table.Column<decimal>(type: "money", nullable: false),
+                    quantity = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
+                    isRentable = table.Column<bool>(type: "bit", nullable: false),
+                    rating = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_books", x => x.id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "categories",
                 columns: table => new
@@ -51,27 +72,20 @@ namespace LibraryBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "books",
+                name: "bestsellers",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    author = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    bookDescription = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: true),
-                    imageUrl = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    categoryId = table.Column<int>(type: "int", nullable: false),
-                    price = table.Column<decimal>(type: "money", nullable: false),
-                    quantity = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
-                    isRentable = table.Column<bool>(type: "bit", nullable: false)
+                    bookId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_books", x => x.id);
+                    table.PrimaryKey("PK_bestsellers", x => x.id);
                     table.ForeignKey(
-                        name: "FK_books_categories_categoryId",
-                        column: x => x.categoryId,
-                        principalTable: "categories",
+                        name: "FK_bestsellers_books_bookId",
+                        column: x => x.bookId,
+                        principalTable: "books",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -92,27 +106,9 @@ namespace LibraryBackend.Migrations
                 {
                     table.PrimaryKey("PK_users", x => x.id);
                     table.ForeignKey(
-                        name: "FK__users__roleId__267ABA7A",
+                        name: "FK_users_roles_roleId",
                         column: x => x.roleId,
                         principalTable: "roles",
-                        principalColumn: "id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "bestsellers",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    bookId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_bestsellers", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_bestsellers_books_bookId",
-                        column: x => x.bookId,
-                        principalTable: "books",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -131,19 +127,9 @@ namespace LibraryBackend.Migrations
                 {
                     table.PrimaryKey("PK_orders", x => x.id);
                     table.ForeignKey(
-                        name: "FK__orders__orderSta__37A5467C",
-                        column: x => x.orderStatusId,
-                        principalTable: "orderStatuses",
-                        principalColumn: "id");
-                    table.ForeignKey(
-                        name: "FK__orders__userId__36B12243",
+                        name: "FK_orders_users_userId",
                         column: x => x.userId,
                         principalTable: "users",
-                        principalColumn: "id");
-                    table.ForeignKey(
-                        name: "FK_orders_books_bookId",
-                        column: x => x.bookId,
-                        principalTable: "books",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -181,21 +167,6 @@ namespace LibraryBackend.Migrations
                 column: "bookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_books_categoryId",
-                table: "books",
-                column: "categoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_orders_bookId",
-                table: "orders",
-                column: "bookId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_orders_orderStatusId",
-                table: "orders",
-                column: "orderStatusId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_orders_userId",
                 table: "orders",
                 column: "userId");
@@ -223,13 +194,16 @@ namespace LibraryBackend.Migrations
                 name: "bestsellers");
 
             migrationBuilder.DropTable(
+                name: "categories");
+
+            migrationBuilder.DropTable(
                 name: "orders");
 
             migrationBuilder.DropTable(
-                name: "rentedBooks");
+                name: "orderStatuses");
 
             migrationBuilder.DropTable(
-                name: "orderStatuses");
+                name: "rentedBooks");
 
             migrationBuilder.DropTable(
                 name: "users");
@@ -239,9 +213,6 @@ namespace LibraryBackend.Migrations
 
             migrationBuilder.DropTable(
                 name: "roles");
-
-            migrationBuilder.DropTable(
-                name: "categories");
         }
     }
 }

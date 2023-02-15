@@ -85,6 +85,11 @@ namespace LibraryBackend.Migrations
                         .HasColumnName("quantity")
                         .HasDefaultValueSql("((0))");
 
+                    b.Property<string>("Rating")
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)")
+                        .HasColumnName("rating");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -92,8 +97,6 @@ namespace LibraryBackend.Migrations
                         .HasColumnName("title");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("books", (string)null);
                 });
@@ -140,10 +143,6 @@ namespace LibraryBackend.Migrations
                         .HasColumnName("userId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("OrderStatusId");
 
                     b.HasIndex("UserId");
 
@@ -277,42 +276,13 @@ namespace LibraryBackend.Migrations
                     b.Navigation("Book");
                 });
 
-            modelBuilder.Entity("LibraryBackend.Models.Book", b =>
-                {
-                    b.HasOne("LibraryBackend.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("LibraryBackend.Models.Order", b =>
                 {
-                    b.HasOne("LibraryBackend.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LibraryBackend.Models.OrderStatus", "OrderStatus")
-                        .WithMany("Orders")
-                        .HasForeignKey("OrderStatusId")
-                        .IsRequired()
-                        .HasConstraintName("FK__orders__orderSta__37A5467C");
-
-                    b.HasOne("LibraryBackend.Models.User", "User")
+                    b.HasOne("LibraryBackend.Models.User", null)
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
-                        .IsRequired()
-                        .HasConstraintName("FK__orders__userId__36B12243");
-
-                    b.Navigation("Book");
-
-                    b.Navigation("OrderStatus");
-
-                    b.Navigation("User");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("LibraryBackend.Models.RentedBook", b =>
@@ -337,22 +307,12 @@ namespace LibraryBackend.Migrations
             modelBuilder.Entity("LibraryBackend.Models.User", b =>
                 {
                     b.HasOne("LibraryBackend.Models.Role", "Role")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("RoleId")
-                        .IsRequired()
-                        .HasConstraintName("FK__users__roleId__267ABA7A");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("LibraryBackend.Models.OrderStatus", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("LibraryBackend.Models.Role", b =>
-                {
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("LibraryBackend.Models.User", b =>

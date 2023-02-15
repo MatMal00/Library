@@ -13,5 +13,6 @@ namespace LibraryBackend.Models
         public decimal Price { get; set; }
         public int? Quantity { get; set; }
         public bool IsRentable { get; set; }
+        public string Rating { get; set; }   
     }
 }
