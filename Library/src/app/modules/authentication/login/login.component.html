@@ -28,7 +28,7 @@
     </button>
     <mat-error *ngIf="passwordFormControl.hasError('minlength')"> Password should be min. 6 characters long </mat-error>
   </mat-form-field>
-  <a class="create" href="#"> Sign up here!</a>
+  <a class="create" [routerLink]="'/register'"> Sign up here!</a>
   <div class="example-button-row">
     <button mat-raised-button color="warn" class="button">SIGN IN</button>
   </div>
