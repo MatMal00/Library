@@ -14,7 +14,11 @@ export class RentalComponent implements OnInit {
 
   public ngOnInit(): void {
     this.booksService.getBooks().subscribe((result: Book[]) => {
-      this.books = result.filter((x: Book) => x.isRentable === true);
+      this.books = result.filter((x: Book) => x.isRentable === false);
+    });
+
+    this.booksService.getCategories().subscribe((x) => {
+      console.log(x);
     });
   }
 }
