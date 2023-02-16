@@ -59,7 +59,7 @@ namespace LibraryBackend.Controllers
         }
 
         // DELETE: api/Authentication/5
-        [HttpDelete("{id}")]
+        [HttpDelete("user/{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var user = await _context.Users.FindAsync(id);
