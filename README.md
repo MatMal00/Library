@@ -2,6 +2,7 @@ Projekt Library
 
 1.	Aby zainicjalizować bazę danych wraz z zestawem danych proszę otworzyć plik library.sql
 w programie sql server management studio, a następnie wykonać skrypt 
+( należy zwrócić uwagę na to aby ścieżka była poprawna FILENAME = …  )
 ![image](https://user-images.githubusercontent.com/101005328/219758891-7a3c8aeb-1c62-42f8-9274-3c8619ea7ebe.png)
 
 2.	Następnie należy otworzyć projekt oraz ustawić odpowiedni connection string 
