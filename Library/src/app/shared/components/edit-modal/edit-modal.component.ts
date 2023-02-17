@@ -50,5 +50,7 @@ export class EditModalComponent implements OnInit {
     };
 
     this._booksService.editBook(bookId, form).subscribe();
+
+    this.dialogRef.close();
   }
 }
