@@ -14,8 +14,11 @@ w programie sql server management studio, a następnie wykonać skrypt
  ![image](https://user-images.githubusercontent.com/101005328/219758826-07a4e170-2539-492f-858b-a8ddb83ee0a5.png)
 
 4.Po wykonaniu się pomyślniej kompilacji otworzą się nam dwie strony:
+
  •  swagger – dokumentacja wszystkich dostępnych endpointów w aplikacji
+ 
  ![image](https://user-images.githubusercontent.com/101005328/219758804-43d5ed37-8f52-46a3-9bd1-01dca5be4335.png)
 
  •	aplikacja frontowa
+
 ![image](https://user-images.githubusercontent.com/101005328/219758774-67642ed1-ea98-4f86-ae08-e150db86a755.png)
