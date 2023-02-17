@@ -30,7 +30,7 @@ export class CreateNewAccountComponent {
     if (this.createAccountForm.valid) {
       this.booksService.postAuthenticationRegister(newUserAccountValue).subscribe({
         next: () => {
-          alert('Pomyślnie utworzono konto');
+          alert('Account has been successfully created');
           this._router.navigate(['/login']);
         },
         error: (error) => {

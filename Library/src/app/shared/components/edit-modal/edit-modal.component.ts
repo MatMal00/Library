@@ -49,8 +49,6 @@ export class EditModalComponent implements OnInit {
       ...this.editForm.value,
     };
 
-    console.log(form);
-
     this._booksService.editBook(bookId, form).subscribe();
   }
 }

@@ -36,7 +36,7 @@
       <div class="overlay">
         <img (click)="buyBook(book.id)" src="../../../assets/icons/shopping_cart_FILL0_wght400_GRAD0_opsz48.svg" />
         <img
-          *ngIf="isUserLogin.role.id === 1"
+          *ngIf="isUserLogin?.role?.roleName === 'admin'"
           (click)="editMode(book)"
           src="../../../assets/icons/edit_FILL0_wght400_GRAD0_opsz48.svg"
         />

@@ -38,7 +38,7 @@
         <img (click)="rentBook(book.id)" src="../../../assets/icons/favorite_FILL1_wght400_GRAD0_opsz48.svg" />
         <img
           (click)="editMode(book)"
-          *ngIf="isUserLogin.role.id === 1"
+          *ngIf="isUserLogin?.role?.roleName === 'admin'"
           src="../../../assets/icons/edit_FILL0_wght400_GRAD0_opsz48.svg"
         />
       </div>

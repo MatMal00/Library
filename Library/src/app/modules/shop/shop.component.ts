@@ -68,10 +68,6 @@ export class ShopComponent {
       width: '450px',
     };
 
-    const dialogRef = this.dialog.open(EditModalComponent, config);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      // this.books = result;
-    });
+    this.dialog.open(EditModalComponent, config);
   }
 }
