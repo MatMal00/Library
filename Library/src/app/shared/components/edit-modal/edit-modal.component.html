@@ -4,30 +4,25 @@
     <mat-form-field class="field">
       <mat-label>Title</mat-label>
       <input type="text" matInput formControlName="title" />
-      <!-- <mat-error class="error" *ngIf="editForm['title'].hasError('required')"> First Name is required </mat-error> -->
     </mat-form-field>
     <mat-form-field class="field">
       <mat-label>Author</mat-label>
       <input matInput formControlName="author" />
-      <!-- <mat-error class="error" *ngIf="editForm['author'].hasError('required')"> First Name is required </mat-error> -->
     </mat-form-field>
   </div>
   <div class="secondColumn">
     <mat-form-field class="field">
       <mat-label>Category Name</mat-label>
       <input matInput formControlName="categoryName" />
-      <!-- <mat-error class="error" *ngIf="editForm['categoryName'].hasError('required')"> First Name is required </mat-error> -->
       <mat-select formControlName="categoryName">
         <mat-option *ngFor="let category of categories" [value]="category.categoryName"
           >{{ category.categoryName }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-
     <mat-form-field class="field">
       <mat-label>Quantity</mat-label>
       <input type="number" matInput formControlName="quantity" />
-      <!-- <mat-error class="error" *ngIf="editForm['quantity'].hasError('required')"> First Name is required </mat-error> -->
     </mat-form-field>
   </div>
   <div class="wrapper-button">
