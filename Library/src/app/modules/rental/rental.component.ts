@@ -64,7 +64,7 @@ export class RentalComponent implements OnInit {
         quantity: book.quantity,
       },
       height: '410px',
-      width: '450px',
+      width: '500px',
     };
 
     const dialogRef = this.dialog.open(EditModalComponent, config);

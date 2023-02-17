@@ -20,8 +20,9 @@ export class BooksService {
     return this._http.delete<Book[]>(`/api/books/${bookId}`);
   }
 
-  public getOrderStatus(): Observable<any> {
-    return this._http.get<any>('/api/OrderStatus');
+  public editBook(bookId: number, updateForm: object): Observable<Book[]> {
+    
+    return this._http.put<Book[]>(`/api/books/${bookId}`, updateForm);
   }
 
   public getCategories(): Observable<Categories[]> {

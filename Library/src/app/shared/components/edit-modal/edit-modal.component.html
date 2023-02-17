@@ -17,7 +17,13 @@
       <mat-label>Category Name</mat-label>
       <input matInput formControlName="categoryName" />
       <!-- <mat-error class="error" *ngIf="editForm['categoryName'].hasError('required')"> First Name is required </mat-error> -->
+      <mat-select formControlName="categoryName">
+        <mat-option *ngFor="let category of categories" [value]="category.categoryName"
+          >{{ category.categoryName }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
+
     <mat-form-field class="field">
       <mat-label>Quantity</mat-label>
       <input type="number" matInput formControlName="quantity" />
