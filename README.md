@@ -23,3 +23,6 @@ w programie sql server management studio, a następnie wykonać skrypt
  •	aplikacja frontowa
 
 ![image](https://user-images.githubusercontent.com/101005328/219758774-67642ed1-ea98-4f86-ae08-e150db86a755.png)
+
+Diagram bazy daynch:
+![image](https://user-images.githubusercontent.com/101005328/219760658-b7e7fb7a-64de-40f4-a2af-a91d6cbd5a00.png)
