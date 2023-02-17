@@ -4,6 +4,15 @@
     <h4 class="page-subtitle">- Check our offer -</h4>
   </div>
 
+  <mat-form-field class="field" appearance="fill">
+    <mat-label>Choose Category</mat-label>
+    <mat-select [formControl]="selectFormControl">
+      <mat-option *ngFor="let book of categories" [value]="book.categoryName">
+        {{ book.categoryName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <div class="box-container">
     <div class="box" *ngFor="let book of books">
       <div class="image">
@@ -14,7 +23,8 @@
         <h3 class="title">"{{ book.title }}"</h3>
         <h3 class="title">Author: {{ book.author }}</h3>
         <div class="subinfo">
-          <div class="price">{{ book.price }} zl</div>
+          <p class="price">Quantity:</p>
+          <div class="price">{{ book.quantity }}</div>
           <div class="stars">
             <img src="../../../assets/icons/grade_FILL1_wght400_GRAD0_opsz48.svg" />
             <img src="../../../assets/icons/grade_FILL1_wght400_GRAD0_opsz48.svg" />
