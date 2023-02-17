@@ -5,7 +5,7 @@
   </div>
 
   <mat-form-field class="field" appearance="fill">
-    <mat-label>Choose Category</mat-label>
+    <mat-label>-- Choose Category --</mat-label>
     <mat-select [formControl]="selectFormControl">
       <mat-option *ngFor="let book of categories" [value]="book.categoryName">
         {{ book.categoryName }}
@@ -34,8 +34,13 @@
         </div>
       </div>
 
-      <div class="overlay" (click)="rentBook(book.id)">
-        <img style="--i: 2" src="../../../assets/icons/favorite_FILL1_wght400_GRAD0_opsz48.svg" />
+      <div class="overlay">
+        <img (click)="rentBook(book.id)" src="../../../assets/icons/favorite_FILL1_wght400_GRAD0_opsz48.svg" />
+        <img
+          (click)="editMode(book)"
+          *ngIf="isUserLogin.role.id === 1"
+          src="../../../assets/icons/edit_FILL0_wght400_GRAD0_opsz48.svg"
+        />
       </div>
     </div>
   </div>
