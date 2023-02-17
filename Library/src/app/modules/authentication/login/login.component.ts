@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BooksService } from 'src/app/shared/services/books.service';
-import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
