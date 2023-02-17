@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Book } from 'src/app/shared/models/book.model';
 import { BooksService } from 'src/app/shared/services/books.service';
+import { Categories } from 'src/app/shared/models/categories.model';
 
 @Component({
   selector: 'app-shop',
@@ -11,7 +12,7 @@ import { BooksService } from 'src/app/shared/services/books.service';
 export class ShopComponent {
   books?: Book[];
 
-  categories: any;
+  categories!: Categories[];
 
   selectFormControl = new FormControl('');
 
@@ -22,8 +23,8 @@ export class ShopComponent {
       this.books = result.filter((x: Book) => x.isRentable === true);
     });
 
-    this.booksService.getCategories().subscribe((x) => {
-      this.categories = x;
+    this.booksService.getCategories().subscribe((response: Categories[]) => {
+      this.categories = response;
     });
 
     this.selectFormControl.valueChanges.subscribe((selectedValue: string | null) => {

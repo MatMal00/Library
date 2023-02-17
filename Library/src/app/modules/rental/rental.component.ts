@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/shared/models/book.model';
 import { BooksService } from 'src/app/shared/services/books.service';
 import { FormControl } from '@angular/forms';
+import { Categories } from 'src/app/shared/models/categories.model';
 
 @Component({
   selector: 'app-rental',
@@ -10,8 +11,7 @@ import { FormControl } from '@angular/forms';
 })
 export class RentalComponent implements OnInit {
   books?: Book[];
-
-  categories: any;
+  categories!: Categories[];
 
   selectFormControl = new FormControl('');
 
@@ -22,8 +22,8 @@ export class RentalComponent implements OnInit {
       this.books = result.filter((x: Book) => x.isRentable === false);
     });
 
-    this.booksService.getCategories().subscribe((x) => {
-      this.categories = x;
+    this.booksService.getCategories().subscribe((response: Categories[]) => {
+      this.categories = response;
     });
 
     this.selectFormControl.valueChanges.subscribe((selectedValue: string | null) => {
@@ -33,9 +33,5 @@ export class RentalComponent implements OnInit {
     });
   }
 
-  public rentBook(bookId: number): void {
-
-    
-
-  }
+  public rentBook(bookId: number): void {}
 }
