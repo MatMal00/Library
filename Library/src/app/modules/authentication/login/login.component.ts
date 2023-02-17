@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BooksService } from 'src/app/shared/services/books.service';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent {
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
-  constructor(private _formBuilder: FormBuilder, private _booksService: BooksService) {}
+  constructor(private _formBuilder: FormBuilder, private _booksService: BooksService, private _router: Router) {}
 
   get form() {
     return this.loginForm.controls;
@@ -28,9 +29,18 @@ export class LoginComponent {
         ...this.loginForm.value,
       };
 
-      this._booksService.postAuthenticationLogin(login).subscribe();
-
-      window.localStorage.setItem('user', JSON.stringify(login));
+      this._booksService.postAuthenticationLogin(login).subscribe({
+        next: (loginRes: object) => {
+          window.localStorage.setItem('user', JSON.stringify(loginRes));
+          this._router.navigate(['/']);
+          setTimeout(() => {
+            document.location.reload();
+          }, 1000);
+        },
+        error: (error) => {
+          alert(error.error);
+        },
+      });
     }
   }
 }

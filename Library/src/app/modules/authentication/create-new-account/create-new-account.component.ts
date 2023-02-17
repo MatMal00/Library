@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BooksService } from 'src/app/shared/services/books.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class CreateNewAccountComponent {
     password: ['', Validators.required],
   });
 
-  constructor(private _formBuilder: FormBuilder, private booksService: BooksService) {}
+  constructor(private _formBuilder: FormBuilder, private booksService: BooksService, private _router: Router) {}
 
   get form() {
     return this.createAccountForm.controls;
@@ -27,7 +28,15 @@ export class CreateNewAccountComponent {
     };
 
     if (this.createAccountForm.valid) {
-      this.booksService.postAuthenticationRegister(newUserAccountValue).subscribe();
+      this.booksService.postAuthenticationRegister(newUserAccountValue).subscribe({
+        next: () => {
+          alert('Pomyślnie utworzono konto');
+          this._router.navigate(['/login']);
+        },
+        error: (error) => {
+          alert(error.error);
+        },
+      });
     }
   }
 }

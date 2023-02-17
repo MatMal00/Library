@@ -54,8 +54,23 @@ namespace LibraryBackend.Controllers
             {
                 return BadRequest();
             }
+            var bookFromDb = await _context.Books.FindAsync(book.Id);
 
-            _context.Entry(book).State = EntityState.Modified;
+            var bookToSave = new Book()
+            {
+                Id = bookFromDb.Id,
+                Title = book.Title,
+                Author = book.Author,
+                CategoryId = book.CategoryId,
+                BookDescription = bookFromDb.BookDescription, 
+                ImageUrl = bookFromDb.ImageUrl,
+                Price = bookFromDb.Price,
+                Quantity = bookFromDb.Quantity,
+                IsRentable = bookFromDb.IsRentable,
+                Rating = bookFromDb.Rating  
+            };
+
+            _context.Entry(bookToSave).State = EntityState.Modified;
 
             try
             {
