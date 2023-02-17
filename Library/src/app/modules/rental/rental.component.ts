@@ -15,7 +15,7 @@ export class RentalComponent implements OnInit {
   books?: Book[];
   categories!: Categories[];
 
-  isUserLogin: any;
+  userLogin: any;
 
   selectFormControl = new FormControl('');
 
@@ -36,15 +36,15 @@ export class RentalComponent implements OnInit {
       });
     });
 
-    this.booksService.loginUser.subscribe((response: object) => {
-      this.isUserLogin = response;
+    this.booksService.loginUser.subscribe((response: object | null) => {
+      this.userLogin = response;
     });
   }
 
   public rentBook(bookId: number): void {
     let bodyRequest = {
       bookId: bookId,
-      userId: this.isUserLogin.id,
+      userId: this.userLogin.id,
     };
 
     this.booksService.postOrder(bodyRequest).subscribe({

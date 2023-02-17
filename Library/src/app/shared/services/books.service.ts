@@ -21,7 +21,6 @@ export class BooksService {
   }
 
   public editBook(bookId: number, updateForm: object): Observable<Book[]> {
-    
     return this._http.put<Book[]>(`/api/books/${bookId}`, updateForm);
   }
 

@@ -16,7 +16,7 @@ export class ShopComponent {
 
   categories!: Categories[];
 
-  isUserLogin: any;
+  userLogin: any;
 
   selectFormControl = new FormControl('');
 
@@ -37,15 +37,15 @@ export class ShopComponent {
       });
     });
 
-    this.booksService.loginUser.subscribe((response: object) => {
-      this.isUserLogin = response;
+    this.booksService.loginUser.subscribe((response: object | null) => {
+      this.userLogin = response;
     });
   }
 
   public buyBook(bookId: number): void {
     let bodyRequest = {
       bookId: bookId,
-      userId: this.isUserLogin.id,
+      userId: this.userLogin.id,
     };
 
     this.booksService.postOrder(bodyRequest).subscribe({

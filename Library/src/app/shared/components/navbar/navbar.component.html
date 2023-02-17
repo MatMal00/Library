@@ -10,8 +10,8 @@
         <a [routerLink]="['/Rental']">Rental</a>
       </li>
       <li class="nav__tabs--link"><a [routerLink]="['/Shop']">Online Shop</a></li>
-      <a *ngIf="!isUserLogin" [routerLink]="['/login']"><button class="nav__tabs--button">Sign In</button></a>
-      <a *ngIf="isUserLogin" [routerLink]="['/login']" (click)="signOut()"
+      <a *ngIf="!isUserLogin?.id" [routerLink]="['/login']"><button class="nav__tabs--button">Sign In</button></a>
+      <a *ngIf="isUserLogin?.id" [routerLink]="['/login']" (click)="signOut()"
         ><button class="nav__tabs--button">Sign Out</button></a
       >
     </ul>
