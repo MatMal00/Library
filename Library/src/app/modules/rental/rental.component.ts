@@ -13,6 +13,8 @@ export class RentalComponent implements OnInit {
   books?: Book[];
   categories!: Categories[];
 
+  isUserLogin: any;
+
   selectFormControl = new FormControl('');
 
   constructor(private booksService: BooksService) {}
@@ -31,7 +33,22 @@ export class RentalComponent implements OnInit {
         this.books = result.filter((x: Book) => x.isRentable === false && x.categoryName === selectedValue);
       });
     });
+
+    this.booksService.loginUser.subscribe((response: object) => {
+      this.isUserLogin = response;
+    });
   }
 
-  public rentBook(bookId: number): void {}
+  public rentBook(bookId: number): void {
+    let bodyRequest = {
+      bookId: bookId,
+      userId: this.isUserLogin.id,
+    };
+
+    this.booksService.postOrder(bodyRequest).subscribe({
+      next: () => {
+        alert('Book has been successfully rented!');
+      },
+    });
+  }
 }

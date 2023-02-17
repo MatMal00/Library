@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
   public ngOnInit(): void {
     this.isUserLogin = JSON.parse(window.localStorage.getItem('user') || '{}');
-
+    
     this._booksService.loginUser.next(this.isUserLogin);
   }
 
