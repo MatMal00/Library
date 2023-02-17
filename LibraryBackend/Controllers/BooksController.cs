@@ -4,6 +4,7 @@ using LibraryBackend.Models;
 using LibraryBackend.Context;
 using LibraryBackend.ResponseModels;
 using LibraryBackend.Mappers;
+using LibraryBackend.RequestModels;
 
 namespace LibraryBackend.Controllers
 {
@@ -48,24 +49,25 @@ namespace LibraryBackend.Controllers
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBook(int id, Book book)
+        public async Task<IActionResult> PutBook(int id, BookPutRequest book)
         {
             if (id != book.Id)
             {
                 return BadRequest();
             }
             var bookFromDb = await _context.Books.FindAsync(book.Id);
+            var categories = await _context.Categories.ToListAsync();
 
             var bookToSave = new Book()
             {
                 Id = bookFromDb.Id,
                 Title = book.Title,
                 Author = book.Author,
-                CategoryId = book.CategoryId,
+                CategoryId = categories.Find(category => category.CategoryName == book.CategoryName).Id,
                 BookDescription = bookFromDb.BookDescription, 
                 ImageUrl = bookFromDb.ImageUrl,
                 Price = bookFromDb.Price,
-                Quantity = bookFromDb.Quantity,
+                Quantity = book.Quantity,
                 IsRentable = bookFromDb.IsRentable,
                 Rating = bookFromDb.Rating  
             };
