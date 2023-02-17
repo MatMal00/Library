@@ -31,7 +31,10 @@ export class LoginComponent {
       this._booksService.postAuthenticationLogin(login).subscribe({
         next: (loginRes: object) => {
           window.localStorage.setItem('user', JSON.stringify(loginRes));
-          this._router.navigate(['']);
+          this._router.navigate(['/']);
+          setTimeout(() => {
+            document.location.reload();
+          }, 1000);
         },
         error: (error) => {
           alert(error.error);
