@@ -54,6 +54,10 @@ namespace LibraryBackend.Controllers
             {
                 return BadRequest();
             }
+            var bookFromDb = await _context.Books.FindAsync(book.Id);
+
+            book.BookDescription ??= bookFromDb.BookDescription;
+            book.CategoryId = bookFromDb.CategoryId;
 
             _context.Entry(book).State = EntityState.Modified;
 
