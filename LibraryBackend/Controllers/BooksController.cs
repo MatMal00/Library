@@ -58,21 +58,12 @@ namespace LibraryBackend.Controllers
             var bookFromDb = await _context.Books.FindAsync(book.Id);
             var categories = await _context.Categories.ToListAsync();
 
-            var bookToSave = new Book()
-            {
-                Id = bookFromDb.Id,
-                Title = book.Title,
-                Author = book.Author,
-                CategoryId = categories.Find(category => category.CategoryName == book.CategoryName).Id,
-                BookDescription = bookFromDb.BookDescription, 
-                ImageUrl = bookFromDb.ImageUrl,
-                Price = bookFromDb.Price,
-                Quantity = book.Quantity,
-                IsRentable = bookFromDb.IsRentable,
-                Rating = bookFromDb.Rating  
-            };
+            bookFromDb.Title = book.Title;
+            bookFromDb.Author = book.Author;
+            bookFromDb.Quantity = book.Quantity;
+            bookFromDb.CategoryId = categories.Find(category => category.CategoryName == book.CategoryName).Id;
 
-            _context.Entry(bookToSave).State = EntityState.Modified;
+            _context.Entry(bookFromDb).State = EntityState.Modified;
 
             try
             {
