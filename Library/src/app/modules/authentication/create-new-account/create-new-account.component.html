@@ -1,13 +1,13 @@
-<form class="wrapper" [formGroup]="createAccountForm">
+<form class="wrapper" [formGroup]="createAccountForm" (ngSubmit)="createUserSubmit()">
   <h1 class="text-center">Create Account</h1>
   <mat-form-field class="field">
     <mat-label>First Name</mat-label>
-    <input matInput required formControlName="firstName" />
+    <input matInput formControlName="firstName" />
     <mat-error class="error" *ngIf="form['firstName'].hasError('required')"> First Name is required </mat-error>
   </mat-form-field>
   <mat-form-field class="field">
     <mat-label>Last Name</mat-label>
-    <input matInput required formControlName="lastName" />
+    <input matInput formControlName="lastName" />
     <mat-error class="error" *ngIf="form['lastName'].hasError('required')"> Last Name is required </mat-error>
   </mat-form-field>
   <mat-form-field class="field" appearance="fill">
@@ -19,19 +19,11 @@
     </mat-error>
   </mat-form-field>
   <mat-form-field class="field">
-    <mat-label>New Password</mat-label>
-    <input type="password" matInput required formControlName="newPassword" />
-    <mat-error class="error" *ngIf="form['newPassword'].hasError('required')"> New Password is required </mat-error>
+    <mat-label>Password</mat-label>
+    <input type="password" matInput required formControlName="password" />
+    <mat-error class="error" *ngIf="form['password'].hasError('required')"> New Password is required </mat-error>
   </mat-form-field>
-  <mat-form-field class="field">
-    <mat-label>Confirm Password</mat-label>
-    <input type="password" matInput required formControlName="confirmPassword" />
-    <mat-error class="error" *ngIf="form['confirmPassword'].hasError('required')">
-      Confirm password is required
-    </mat-error>
-  </mat-form-field>
-
   <div class="example-button-row">
-    <button mat-raised-button color="warn" class="button">SIGN UP</button>
+    <button mat-raised-button type="submit" color="warn" class="button">SIGN UP</button>
   </div>
 </form>

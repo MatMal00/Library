@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { BooksService } from 'src/app/shared/services/books.service';
 
 @Component({
   selector: 'app-login',
@@ -12,14 +13,26 @@ export class LoginComponent {
 
   matcher = new ErrorStateMatcher();
 
-  // loginForm;
-  emailFormControl = new FormControl('', [Validators.email]);
-  passwordFormControl = new FormControl('', [Validators.minLength(6)]);
+  loginForm: FormGroup = this._formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
 
-  constructor() {}
+  constructor(private _formBuilder: FormBuilder, private _booksService: BooksService) {}
 
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  get form() {
+    return this.loginForm.controls;
+  }
+
+  public onSubmit() {
+    if (this.loginForm.valid) {
+      let login = {
+        ...this.loginForm.value,
+      };
+
+      this._booksService.postAuthenticationLogin(login).subscribe();
+
+      window.localStorage.setItem('user', JSON.stringify(login));
+    }
   }
 }

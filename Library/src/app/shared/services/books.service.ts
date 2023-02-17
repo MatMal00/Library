@@ -22,4 +22,12 @@ export class BooksService {
   public getCategories(): Observable<any> {
     return this._http.get<any>('/api/categories');
   }
+
+  public postAuthenticationLogin(login: any) {
+    return this._http.post('/api/auth/login', login);
+  }
+
+  public postAuthenticationRegister(newUserAccountValue: any) {
+    return this._http.post<any>('/api/auth/register', newUserAccountValue);
+  }
 }
