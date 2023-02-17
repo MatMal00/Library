@@ -14,7 +14,6 @@ namespace LibraryBackend.Models
         public string BookDescription { get; set; }
         [Url]
         public string ImageUrl { get; set; }
-        [Required]
         public int CategoryId { get; set; }
         [Required]
         public decimal Price { get; set; }
