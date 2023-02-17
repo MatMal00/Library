@@ -32,4 +32,10 @@ export class RentalComponent implements OnInit {
       });
     });
   }
+
+  public rentBook(bookId: number): void {
+
+    
+
+  }
 }

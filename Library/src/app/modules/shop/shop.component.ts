@@ -32,4 +32,8 @@ export class ShopComponent {
       });
     });
   }
+
+  hehe(event: Event) {
+    console.log(event);
+  }
 }

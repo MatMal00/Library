@@ -11,8 +11,6 @@ import { BooksService } from 'src/app/shared/services/books.service';
 export class LoginComponent {
   hide: boolean = true;
 
-  matcher = new ErrorStateMatcher();
-
   loginForm: FormGroup = this._formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],

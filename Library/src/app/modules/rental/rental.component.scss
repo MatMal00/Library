@@ -67,7 +67,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 223px;
+  height: 350px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -78,10 +78,18 @@
 .box .overlay img {
   color: #666;
   background-color: #fff;
+  border-radius: 10px;
+  margin-top: 50px;
   margin: 10px;
-  padding: 13px 15px;
-  font-size: 25px;
-  transform: translateY(-150px);
+  padding: 8px 10px;
+  transform: translateY(-300px);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.box:hover .overlay img {
+  transform: translateY(0);
+  filter: drop-shadow(0 3px 50px rgb(0, 0, 0));
 }
 
 .field {
