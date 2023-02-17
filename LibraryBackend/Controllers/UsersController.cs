@@ -27,12 +27,15 @@ namespace LibraryBackend.Controllers
         public async Task<ActionResult<IEnumerable<UserSimplifiedResponse>>> GetUsers()
         {
             var users = await _context.Users.ToListAsync();
+            var roles = await _context.Roles.ToListAsync();
+
             return users.Select(user => new UserSimplifiedResponse()
             {
                 Id = user.Id,
                 Email = user.Email,
                 FirstName = user.FirstName,
-                Lastname = user.Lastname
+                Lastname = user.Lastname,
+                Role = roles.Find(role => role.Id == user.RoleId),
             }).ToList();
         }
 
