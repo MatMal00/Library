@@ -24,6 +24,18 @@ w programie sql server management studio, a następnie wykonać skrypt
 
 ![image](https://user-images.githubusercontent.com/101005328/219758774-67642ed1-ea98-4f86-ae08-e150db86a755.png)
 
+5. 5.	W aplikacji są dostępne dwa typu użytkowników (admin oraz user)
+•	Admin – usuwanie, edycja książek oraz przeglądanie książek
+ - email: admin@admin.pl hasło: test123
+•	User – możliwość składania zamówień oraz przeglądania książek
+ - email: testuser@user.pl hasło: test123
+ ![image](https://user-images.githubusercontent.com/101005328/219804825-fa9fa0fe-191c-48b3-85f0-e6ef0a3f49ee.png)
+ ![image](https://user-images.githubusercontent.com/101005328/219804838-d655e6e6-f691-41e4-a33c-9658494e62a9.png)
+
+
+
+
+
 Diagram bazy daynch:
 
 
