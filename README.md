@@ -34,9 +34,8 @@ w programie sql server management studio, a następnie wykonać skrypt
  - email: testuser@user.pl hasło: test123
  ![image](https://user-images.githubusercontent.com/101005328/219804825-fa9fa0fe-191c-48b3-85f0-e6ef0a3f49ee.png)
  ![image](https://user-images.githubusercontent.com/101005328/219804838-d655e6e6-f691-41e4-a33c-9658494e62a9.png)
-
-
-
+ ![image](https://user-images.githubusercontent.com/101005328/219805161-ddea98c1-34a5-4cfb-a27d-8df875337dac.png)
+ ![image](https://user-images.githubusercontent.com/101005328/219805213-8ecc0959-cef4-4843-884a-7a4f30c74611.png)
 
 
 Diagram bazy daynch:
