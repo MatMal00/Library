@@ -11,7 +11,6 @@ namespace LibraryBackend.Models
         public string Title { get; set; }
         [Required]
         public string Author { get; set; }
-        [Required]
         public string BookDescription { get; set; }
         [Url]
         public string ImageUrl { get; set; }
