@@ -33,8 +33,13 @@
         </div>
       </div>
 
-      <div class="overlay" (click)="buyBook(book.id)">
-        <img style="--i: 1" src="../../../assets/icons/shopping_cart_FILL0_wght400_GRAD0_opsz48.svg" />
+      <div class="overlay">
+        <img (click)="buyBook(book.id)" src="../../../assets/icons/shopping_cart_FILL0_wght400_GRAD0_opsz48.svg" />
+        <img
+          *ngIf="isUserLogin.role.id === 1"
+          (click)="editMode(book)"
+          src="../../../assets/icons/edit_FILL0_wght400_GRAD0_opsz48.svg"
+        />
       </div>
     </div>
   </div>

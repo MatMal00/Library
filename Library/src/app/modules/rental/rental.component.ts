@@ -3,6 +3,8 @@ import { Book } from 'src/app/shared/models/book.model';
 import { BooksService } from 'src/app/shared/services/books.service';
 import { FormControl } from '@angular/forms';
 import { Categories } from 'src/app/shared/models/categories.model';
+import { EditModalComponent } from 'src/app/shared/components/edit-modal/edit-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-rental',
@@ -17,7 +19,7 @@ export class RentalComponent implements OnInit {
 
   selectFormControl = new FormControl('');
 
-  constructor(private booksService: BooksService) {}
+  constructor(private booksService: BooksService, public dialog: MatDialog) {}
 
   public ngOnInit(): void {
     this.booksService.getBooks().subscribe((result: Book[]) => {
@@ -49,6 +51,26 @@ export class RentalComponent implements OnInit {
       next: () => {
         alert('Book has been successfully rented!');
       },
+    });
+  }
+
+  public editMode(book: Book): void {
+    const config = {
+      data: {
+        id: book.id,
+        title: book.title,
+        author: book.author,
+        categoryName: book.categoryName,
+        quantity: book.quantity,
+      },
+      height: '410px',
+      width: '450px',
+    };
+
+    const dialogRef = this.dialog.open(EditModalComponent, config);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      // this.books = result;
     });
   }
 }

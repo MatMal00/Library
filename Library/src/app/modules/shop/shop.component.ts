@@ -3,6 +3,8 @@ import { FormControl } from '@angular/forms';
 import { Book } from 'src/app/shared/models/book.model';
 import { BooksService } from 'src/app/shared/services/books.service';
 import { Categories } from 'src/app/shared/models/categories.model';
+import { MatDialog } from '@angular/material/dialog';
+import { EditModalComponent } from 'src/app/shared/components/edit-modal/edit-modal.component';
 
 @Component({
   selector: 'app-shop',
@@ -18,7 +20,7 @@ export class ShopComponent {
 
   selectFormControl = new FormControl('');
 
-  constructor(private booksService: BooksService) {}
+  constructor(private booksService: BooksService, public dialog: MatDialog) {}
 
   public ngOnInit(): void {
     this.booksService.getBooks().subscribe((result: Book[]) => {
@@ -40,7 +42,7 @@ export class ShopComponent {
     });
   }
 
-  buyBook(bookId: number): void {
+  public buyBook(bookId: number): void {
     let bodyRequest = {
       bookId: bookId,
       userId: this.isUserLogin.id,
@@ -50,6 +52,26 @@ export class ShopComponent {
       next: () => {
         alert('Book has been successfully bought!');
       },
+    });
+  }
+
+  public editMode(book: Book): void {
+    const config = {
+      data: {
+        id: book.id,
+        title: book.title,
+        author: book.author,
+        categoryName: book.categoryName,
+        quantity: book.quantity,
+      },
+      height: '410px',
+      width: '450px',
+    };
+
+    const dialogRef = this.dialog.open(EditModalComponent, config);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      // this.books = result;
     });
   }
 }

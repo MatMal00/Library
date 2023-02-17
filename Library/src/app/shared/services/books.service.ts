@@ -16,6 +16,10 @@ export class BooksService {
     return this._http.get<Book[]>('/api/books');
   }
 
+  public deleteBook(bookId: number): Observable<Book[]> {
+    return this._http.delete<Book[]>(`/api/books/${bookId}`);
+  }
+
   public getOrderStatus(): Observable<any> {
     return this._http.get<any>('/api/OrderStatus');
   }
