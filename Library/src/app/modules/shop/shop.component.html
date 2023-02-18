@@ -8,7 +8,7 @@
     <mat-label>-- Choose Category --</mat-label>
     <mat-select [formControl]="selectFormControl">
       <mat-option *ngFor="let book of categories" [value]="book.categoryName">
-        {{ book.categoryName }}
+        {{ book.categoryName | capitalLetterFirst }}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -23,11 +23,8 @@
         <h3 class="title">"{{ book.title }}"</h3>
         <h3 class="title">Author: {{ book.author }}</h3>
         <div class="subinfo">
-          <div class="price">{{ book.price }} zl</div>
+          <div class="price">{{ book.price }} zł</div>
           <div class="stars">
-            <img src="../../../assets/icons/grade_FILL1_wght400_GRAD0_opsz48.svg" />
-            <img src="../../../assets/icons/grade_FILL1_wght400_GRAD0_opsz48.svg" />
-            <img src="../../../assets/icons/grade_FILL1_wght400_GRAD0_opsz48.svg" />
             <img src="../../../assets/icons/grade_FILL1_wght400_GRAD0_opsz48.svg" />
           </div>
         </div>

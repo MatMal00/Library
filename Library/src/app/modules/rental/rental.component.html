@@ -8,7 +8,7 @@
     <mat-label>-- Choose Category --</mat-label>
     <mat-select [formControl]="selectFormControl">
       <mat-option *ngFor="let book of categories" [value]="book.categoryName">
-        {{ book.categoryName }}
+        {{ book.categoryName | capitalLetterFirst }}
       </mat-option>
     </mat-select>
   </mat-form-field>
