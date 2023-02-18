@@ -20,12 +20,10 @@ export class ShopComponent {
 
   selectFormControl = new FormControl('');
 
-  constructor(private booksService: BooksService, public dialog: MatDialog) {}
+  constructor(private booksService: BooksService, public modal: MatDialog) {}
 
   public ngOnInit(): void {
-    this.booksService.getBooks().subscribe((result: Book[]) => {
-      this.books = result.filter((x: Book) => x.isRentable === true);
-    });
+    this._getBooksForSell();
 
     this.booksService.getCategories().subscribe((response: Categories[]) => {
       this.categories = response;
@@ -68,6 +66,16 @@ export class ShopComponent {
       width: '450px',
     };
 
-    this.dialog.open(EditModalComponent, config);
+    const modalRef = this.modal.open(EditModalComponent, config);
+
+    modalRef.afterClosed().subscribe(() => {
+      this._getBooksForSell();
+    });
+  }
+
+  private _getBooksForSell(): void {
+    this.booksService.getBooks().subscribe((result: Book[]) => {
+      this.books = result.filter((x: Book) => x.isRentable === false);
+    });
   }
 }

@@ -19,12 +19,10 @@ export class RentalComponent implements OnInit {
 
   selectFormControl = new FormControl('');
 
-  constructor(private booksService: BooksService, public dialog: MatDialog) {}
+  constructor(private booksService: BooksService, public modal: MatDialog) {}
 
   public ngOnInit(): void {
-    this.booksService.getBooks().subscribe((result: Book[]) => {
-      this.books = result.filter((x: Book) => x.isRentable === false);
-    });
+    this._getBooksForRent();
 
     this.booksService.getCategories().subscribe((response: Categories[]) => {
       this.categories = response;
@@ -67,10 +65,16 @@ export class RentalComponent implements OnInit {
       width: '500px',
     };
 
-    const dialogRef = this.dialog.open(EditModalComponent, config);
+    const modalRef = this.modal.open(EditModalComponent, config);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      // this.books = result;
+    modalRef.afterClosed().subscribe(() => {
+      this._getBooksForRent();
+    });
+  }
+
+  private _getBooksForRent(): void {
+    this.booksService.getBooks().subscribe((result: Book[]) => {
+      this.books = result.filter((x: Book) => x.isRentable === false);
     });
   }
 }

@@ -22,7 +22,7 @@ export class EditModalComponent implements OnInit {
   editForm = this._formBuilder.group({
     title: [`${this.modalValues.title}`],
     author: [`${this.modalValues.author}`],
-    categoryName: [''],
+    categoryName: [`${this.modalValues.categoryName}`],
     quantity: [`${this.modalValues.quantity}`],
   });
 
@@ -31,7 +31,7 @@ export class EditModalComponent implements OnInit {
   categories = CategoriesConstants.categories;
 
   constructor(
-    public dialogRef: MatDialogRef<ModalData>,
+    public modalRef: MatDialogRef<ModalData>,
     @Inject(MAT_DIALOG_DATA) public modalValues: ModalData,
     private _formBuilder: FormBuilder,
     private _booksService: BooksService
@@ -52,7 +52,6 @@ export class EditModalComponent implements OnInit {
 
     this._booksService.editBook(bookId, form).subscribe();
 
-    this.dialogRef.close();
-    document.location.reload();
+    this.modalRef.close();
   }
 }

@@ -13,10 +13,9 @@
   <div class="secondColumn">
     <mat-form-field class="field">
       <mat-label>Category Name</mat-label>
-      <input matInput formControlName="categoryName" />
       <mat-select formControlName="categoryName">
         <mat-option *ngFor="let category of categories" [value]="category.categoryName"
-          >{{ category.categoryName }}
+          >{{ category.categoryName | capitalLetterFirst }}
         </mat-option>
       </mat-select>
     </mat-form-field>
