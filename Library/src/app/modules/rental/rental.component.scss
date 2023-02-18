@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 50px;
+  padding: 50px 0 0;
 
   .page-title {
     font-size: 80px;
@@ -19,6 +19,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  padding: 0 20px 20px 20px;
 }
 
 .box {
@@ -93,5 +94,6 @@
 }
 
 .field {
+  padding: 0 20px;
   margin-left: 25px;
 }
