@@ -13,7 +13,7 @@ import { BooksService } from 'src/app/shared/services/books.service';
 export class AdminComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'role'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastname', 'email', 'roleName', 'actions'];
   dataSource!: MatTableDataSource<Users, MatTableDataSourcePaginator>;
 
   users!: Users[];
