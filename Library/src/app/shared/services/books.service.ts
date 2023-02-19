@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Book } from 'src/app/shared/models/book.model';
 import { Categories } from '../models/categories.model';
+import { Users } from '../models/users.model';
 
 @Injectable({
   providedIn: 'root',
@@ -38,5 +39,9 @@ export class BooksService {
 
   public postOrder(body: object): Observable<object> {
     return this._http.post<object>('/api/orders', body);
+  }
+
+  public getUsers(): Observable<Users[]> {
+    return this._http.get<Users[]>('/api/users');
   }
 }
