@@ -10,6 +10,8 @@ import { BooksService } from '../../services/books.service';
 export class NavbarComponent implements OnInit {
   userLogin: any;
 
+  showFiller: boolean = false;
+
   constructor(private _booksService: BooksService) {}
 
   public ngOnInit(): void {

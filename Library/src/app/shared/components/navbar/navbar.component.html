@@ -14,8 +14,14 @@
       </li>
       <li class="nav__tabs--link"><a [routerLink]="['/Shop']">Online Shop</a></li>
 
-      <a href="">
-        <button mat-mini-fab class="basket-button" matTooltip="Basket">
+      <a [routerLink]="['/ShoppingBasket']">
+        <button
+          mat-mini-fab
+          class="basket-button"
+          matTooltip="Basket"
+          matBadge="{{ userLogin?.id }}"
+          matBadgeColor="warn"
+        >
           <img
             class="basket-icon"
             src="../../../../assets/icons/shopping_cart_FILL0_wght400_GRAD0_opsz24 (1).svg"

@@ -6,6 +6,7 @@ import { ShopComponent } from './modules/shop/shop.component';
 import { LoginComponent } from './modules/authentication/login/login.component';
 import { CreateNewAccountComponent } from './modules/authentication/create-new-account/create-new-account.component';
 import { AdminComponent } from './modules/admin/admin.component';
+import { ShoppingBasketComponent } from './modules/shopping-basket/shopping-basket.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'Shop',
     component: ShopComponent,
+  },
+  {
+    path: 'ShoppingBasket',
+    component: ShoppingBasketComponent,
   },
   {
     path: 'login',

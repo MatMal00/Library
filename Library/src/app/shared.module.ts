@@ -11,6 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { CapitalLetterFirstPipe } from './shared/pipes/capital-letter-first.pipe';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatBadgeModule } from '@angular/material/badge';
+
 
 @NgModule({
   declarations: [NavbarComponent, EditModalComponent, CapitalLetterFirstPipe],
@@ -25,6 +27,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSelectModule,
     MatIconModule,
     MatTooltipModule,
+    MatBadgeModule,
   ],
   exports: [NavbarComponent, EditModalComponent, MatInputModule, CapitalLetterFirstPipe, MatTooltipModule],
 })
