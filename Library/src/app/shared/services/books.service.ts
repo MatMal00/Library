@@ -8,7 +8,7 @@ import { Categories } from '../models/categories.model';
   providedIn: 'root',
 })
 export class BooksService {
-  loginUser = new BehaviorSubject<object>({});
+  loginUser: BehaviorSubject<object> = new BehaviorSubject<object>({});
 
   constructor(private _http: HttpClient) {}
 
