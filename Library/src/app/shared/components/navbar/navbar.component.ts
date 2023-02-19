@@ -8,18 +8,18 @@ import { BooksService } from '../../services/books.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  isUserLogin: any;
+  userLogin: any;
 
   constructor(private _booksService: BooksService) {}
 
   public ngOnInit(): void {
-    this.isUserLogin = JSON.parse(window.localStorage.getItem('user') || '{}');
+    this.userLogin = JSON.parse(window.localStorage.getItem('user') || '{}');
 
-    this._booksService.loginUser.next(this.isUserLogin);
+    this._booksService.loginUser.next(this.userLogin);
   }
 
   public signOut(): void {
-    this.isUserLogin = window.localStorage.removeItem('user');
+    this.userLogin = window.localStorage.removeItem('user');
     this._booksService.loginUser.next({});
   }
 }
