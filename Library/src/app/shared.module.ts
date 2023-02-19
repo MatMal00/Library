@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { CapitalLetterFirstPipe } from './shared/pipes/capital-letter-first.pipe';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [NavbarComponent, EditModalComponent, CapitalLetterFirstPipe],
@@ -21,7 +23,9 @@ import { CapitalLetterFirstPipe } from './shared/pipes/capital-letter-first.pipe
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatIconModule,
+    MatTooltipModule,
   ],
-  exports: [NavbarComponent, EditModalComponent, MatInputModule, CapitalLetterFirstPipe],
+  exports: [NavbarComponent, EditModalComponent, MatInputModule, CapitalLetterFirstPipe, MatTooltipModule],
 })
 export class SharedModule {}

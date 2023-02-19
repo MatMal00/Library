@@ -38,11 +38,13 @@
           *ngIf="userLogin?.id"
           (click)="rentBook(book.id)"
           src="../../../assets/icons/favorite_FILL1_wght400_GRAD0_opsz48.svg"
+          matTooltip="Rent Book"
         />
         <img
           (click)="editMode(book)"
           *ngIf="userLogin?.role?.roleName === 'admin' && userLogin?.id"
           src="../../../assets/icons/edit_FILL0_wght400_GRAD0_opsz48.svg"
+          matTooltip="Edit Book"
         />
       </div>
     </div>

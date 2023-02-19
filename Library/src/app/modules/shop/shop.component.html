@@ -38,11 +38,13 @@
           *ngIf="userLogin?.id"
           (click)="buyBook(book.id)"
           src="../../../assets/icons/shopping_cart_FILL0_wght400_GRAD0_opsz48.svg"
+          matTooltip="Add To Basket"
         />
         <img
           *ngIf="userLogin?.role?.roleName === 'admin' && userLogin?.id"
           (click)="editMode(book)"
           src="../../../assets/icons/edit_FILL0_wght400_GRAD0_opsz48.svg"
+          matTooltip="Edit Book"
         />
       </div>
     </div>

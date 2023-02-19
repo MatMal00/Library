@@ -13,6 +13,16 @@
         <a [routerLink]="['/Rental']">Rental</a>
       </li>
       <li class="nav__tabs--link"><a [routerLink]="['/Shop']">Online Shop</a></li>
+
+      <a href="">
+        <button mat-mini-fab class="basket-button" matTooltip="Basket">
+          <img
+            class="basket-icon"
+            src="../../../../assets/icons/shopping_cart_FILL0_wght400_GRAD0_opsz24 (1).svg"
+            alt=""
+          /></button
+      ></a>
+
       <a *ngIf="!userLogin?.id" [routerLink]="['/login']"><button class="nav__tabs--button">Sign In</button></a>
       <a *ngIf="userLogin?.id" [routerLink]="['/login']" (click)="signOut()"
         ><button class="nav__tabs--button">Sign Out</button></a
