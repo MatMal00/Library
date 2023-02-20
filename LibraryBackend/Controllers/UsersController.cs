@@ -86,10 +86,24 @@ namespace LibraryBackend.Controllers
         public async Task<IActionResult> DeleteUser(int id)
         {
             var user = await _context.Users.FindAsync(id);
+            var orders = await _context.Orders.ToListAsync();
+            var rentedBooks = await _context.RentedBooks.ToListAsync();
+
             if (user == null)
             {
                 return NotFound();
             }
+            orders.ForEach(o =>
+            {
+                if (o.UserId == id)
+                    _context.Orders.Remove(o);
+            });
+            rentedBooks.ForEach(r =>
+            {
+                if (r.UserId == id)
+                    _context.RentedBooks.Remove(r);
+            });
+            await _context.SaveChangesAsync();
 
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
