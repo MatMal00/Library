@@ -50,7 +50,7 @@ namespace LibraryBackend.Controllers
             };
         }
 
-        // GET: api/Orders/5
+        // GET: api/user/5
         [HttpGet("user/{id}")]
         public async Task<ActionResult<IEnumerable<OrderResponse>>> GetOrderByUser(int id)
         {
@@ -70,7 +70,7 @@ namespace LibraryBackend.Controllers
             return userOrders.Select(order => new OrderResponse()
             {
                 Id = order.Id,
-                Book = BookMapper.ToBookResponseModel(books.Find(book => book.Id == order.Id), categories),
+                Book = BookMapper.ToBookResponseModel(books.Find(book => 1 == order.Id), categories),
                 User = new UserSimplifiedResponse()
                 {
                     Id = user.Id,
@@ -78,7 +78,7 @@ namespace LibraryBackend.Controllers
                     FirstName = user.FirstName,
                     Lastname = user.Lastname
                 },
-                OrderStatus = statuses.First(status => status.Id == order.OrderStatusId)
+                OrderStatus = statuses.Find(status => status.Id == order.OrderStatusId)
             }).ToList();
         }
 

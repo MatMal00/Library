@@ -16,7 +16,7 @@ namespace LibraryBackend.Mappers
             Price = book.Price,
             Quantity = book.Quantity,
             Title = book.Title,
-            Rating = book.Rating
+            Rating = book?.Rating ?? "no Rating"
         };
     }
 }

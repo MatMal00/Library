@@ -26,7 +26,7 @@ namespace LibraryBackend.Controllers
             var books = await _context.Books.ToListAsync();
             var categories = await _context.Categories.ToListAsync();
 
-            return books.Select(b => BookMapper.ToBookResponseModel(b, categories)).ToList();    
+            return books.Select(b => BookMapper.ToBookResponseModel(b, categories)).ToList();
         }
 
         // GET: api/books/5
@@ -104,6 +104,20 @@ namespace LibraryBackend.Controllers
             {
                 return NotFound();
             }
+            var orders = await _context.Orders.ToListAsync();
+            var rented = await _context.RentedBooks.ToListAsync();
+
+            orders.ForEach(o =>
+            {
+                if (o.BookId == id)
+                    _context.Orders.Remove(o);
+            });
+            rented.ForEach(o =>
+            {
+                if (o.BookId == id)
+                    _context.RentedBooks.Remove(o);
+            });
+            await _context.SaveChangesAsync();
 
             _context.Books.Remove(book);
             await _context.SaveChangesAsync();
@@ -117,5 +131,5 @@ namespace LibraryBackend.Controllers
         }
     }
 
- 
+
 }
