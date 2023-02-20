@@ -14,18 +14,14 @@ export class ShoppingBasketComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
   displayedColumns: string[] = ['imageUrl', 'title', 'author', 'categoryName', 'price', 'actions'];
-  dataSource!: MatTableDataSource<Users, MatTableDataSourcePaginator>;
+  dataSource!: any;
 
-  order!: any;
+  order!: object[];
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private booksService: BooksService) {}
 
   public ngOnInit(): void {
-    this.booksService.getBooks().subscribe((response) => {
-      this.order = response;
-      this.dataSource = new MatTableDataSource(this.order);
-      this.dataSource.sort = this.sort;
-    });
+    this.dataSource = JSON.parse(window.localStorage.getItem('order') || '[]');
   }
 
   public announceSortChange(sortState: Sort): void {

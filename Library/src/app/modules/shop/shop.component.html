@@ -36,7 +36,7 @@
       <div class="overlay">
         <img
           *ngIf="userLogin?.id"
-          (click)="buyBook(book.id)"
+          (click)="addToBasketForBuy(book)"
           src="../../../assets/icons/shopping_cart_FILL0_wght400_GRAD0_opsz48.svg"
           matTooltip="Add To Basket"
         />

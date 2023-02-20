@@ -18,6 +18,8 @@ export class ShopComponent {
 
   userLogin: any;
 
+  array: object[] = [];
+
   selectFormControl = new FormControl('');
 
   constructor(private booksService: BooksService, public modal: MatDialog) {}
@@ -38,19 +40,27 @@ export class ShopComponent {
     this.booksService.loginUser.subscribe((response: object | null) => {
       this.userLogin = response;
     });
+
+    this.array = JSON.parse(window.localStorage.getItem('order') || '[]');
   }
 
-  public buyBook(bookId: number): void {
-    let bodyRequest = {
-      bookId: bookId,
-      userId: this.userLogin.id,
-    };
+  public addToBasketForBuy(book: Book): void {
+    // let bodyRequest = {
+    //   bookId: bookId,
+    //   userId: this.userLogin.id,
+    // };
 
-    this.booksService.postOrder(bodyRequest).subscribe({
-      next: () => {
-        alert('Book has been successfully bought!');
-      },
-    });
+    // this.booksService.postOrder(bodyRequest).subscribe({
+    //   next: () => {
+    //     alert('Book has been successfully bought!');
+    //   },
+    // });
+
+    this.array.push(book);
+
+    window.localStorage.setItem('order', JSON.stringify(this.array));
+
+    this.booksService.orders.next(this.array);
   }
 
   public editMode(book: Book): void {
