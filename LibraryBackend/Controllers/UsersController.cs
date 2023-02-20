@@ -100,7 +100,7 @@ namespace LibraryBackend.Controllers
             });
             rentedBooks.ForEach(r =>
             {
-                if (r.BookId == id)
+                if (r.UserId == id)
                     _context.RentedBooks.Remove(r);
             });
             await _context.SaveChangesAsync();
