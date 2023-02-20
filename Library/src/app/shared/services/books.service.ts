@@ -45,4 +45,12 @@ export class BooksService {
   public getUsers(): Observable<Users[]> {
     return this._http.get<Users[]>('/api/users');
   }
+
+  public editUsers(userId: number, updateUser: object): Observable<Users[]> {
+    return this._http.put<Users[]>(`/api/users/${userId}`, updateUser);
+  }
+
+  public deleteUser(userId: number): Observable<Users[]> {
+    return this._http.delete<Users[]>(`/api/users/${userId}`);
+  }
 }

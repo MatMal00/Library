@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Categories } from '../../models/categories.model';
 import { BooksService } from '../../services/books.service';
-import { CategoriesConstants } from '../../models/categories.constants';
+import { CategoriesConstants } from '../../constants/categories.constants';
 
 export interface ModalData {
   id: number;

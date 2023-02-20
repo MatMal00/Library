@@ -4,6 +4,8 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Users } from 'src/app/shared/models/users.model';
 import { BooksService } from 'src/app/shared/services/books.service';
+import { EditUserModalComponent } from 'src/app/shared/components/edit-user-modal/edit-user-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin',
@@ -18,7 +20,7 @@ export class AdminComponent implements OnInit {
 
   users!: Users[];
 
-  constructor(private _liveAnnouncer: LiveAnnouncer, private booksService: BooksService) {}
+  constructor(private _liveAnnouncer: LiveAnnouncer, private booksService: BooksService, public modal: MatDialog) {}
 
   public ngOnInit(): void {
     this.booksService.getUsers().subscribe((response: Users[]) => {
@@ -34,5 +36,38 @@ export class AdminComponent implements OnInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  public editUser(user: Users): void {
+    const config = {
+      data: {
+        id: user.id,
+        firstName: user.firstName,
+        lastname: user.lastname,
+        email: user.email,
+        roleName: user.role.roleName,
+      },
+      height: '410px',
+      width: '450px',
+    };
+
+    const modalRef = this.modal.open(EditUserModalComponent, config);
+
+    modalRef.afterClosed().subscribe(() => {
+      this.booksService.getUsers().subscribe((response: Users[]) => {
+        this.users = response;
+        this.dataSource = new MatTableDataSource(this.users);
+        this.dataSource.sort = this.sort;
+      });
+    });
+  }
+  public deleteUser(userId: number): void {
+    this.booksService.deleteUser(userId).subscribe();
+
+    this.booksService.getUsers().subscribe((response: Users[]) => {
+      this.users = response;
+      this.dataSource = new MatTableDataSource(this.users);
+      this.dataSource.sort = this.sort;
+    });
   }
 }

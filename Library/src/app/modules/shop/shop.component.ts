@@ -5,7 +5,6 @@ import { BooksService } from 'src/app/shared/services/books.service';
 import { Categories } from 'src/app/shared/models/categories.model';
 import { MatDialog } from '@angular/material/dialog';
 import { EditModalComponent } from 'src/app/shared/components/edit-modal/edit-modal.component';
-import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-shop',

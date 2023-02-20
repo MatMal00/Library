@@ -12,10 +12,10 @@ import { CapitalLetterFirstPipe } from './shared/pipes/capital-letter-first.pipe
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
-
+import { EditUserModalComponent } from './shared/components/edit-user-modal/edit-user-modal.component';
 
 @NgModule({
-  declarations: [NavbarComponent, EditModalComponent, CapitalLetterFirstPipe],
+  declarations: [NavbarComponent, EditModalComponent, CapitalLetterFirstPipe, EditUserModalComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -29,6 +29,13 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatTooltipModule,
     MatBadgeModule,
   ],
-  exports: [NavbarComponent, EditModalComponent, MatInputModule, CapitalLetterFirstPipe, MatTooltipModule],
+  exports: [
+    NavbarComponent,
+    EditModalComponent,
+    MatInputModule,
+    CapitalLetterFirstPipe,
+    MatTooltipModule,
+    EditUserModalComponent,
+  ],
 })
 export class SharedModule {}
