@@ -106,16 +106,22 @@ namespace LibraryBackend.Controllers
             }
             var orders = await _context.Orders.ToListAsync();
             var rented = await _context.RentedBooks.ToListAsync();
+            var bestSellers = await _context.Bestsellers.ToListAsync();
 
             orders.ForEach(o =>
             {
                 if (o.BookId == id)
                     _context.Orders.Remove(o);
             });
-            rented.ForEach(o =>
+            rented.ForEach(r =>
             {
-                if (o.BookId == id)
-                    _context.RentedBooks.Remove(o);
+                if (r.BookId == id)
+                    _context.RentedBooks.Remove(r);
+            });
+           bestSellers.ForEach(b =>
+            {
+                if (b.BookId == id)
+                    _context.Bestsellers.Remove(b);
             });
             await _context.SaveChangesAsync();
 
