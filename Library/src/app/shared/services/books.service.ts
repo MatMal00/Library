@@ -10,6 +10,7 @@ import { Users } from '../models/users.model';
 })
 export class BooksService {
   loginUser: BehaviorSubject<object> = new BehaviorSubject<object>({});
+  orders: BehaviorSubject<object[]> = new BehaviorSubject<object[]>([]);
 
   constructor(private _http: HttpClient) {}
 

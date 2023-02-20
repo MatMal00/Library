@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EMPTY } from 'rxjs';
 import { BooksService } from '../../services/books.service';
 
 @Component({
@@ -12,9 +11,17 @@ export class NavbarComponent implements OnInit {
 
   showFiller: boolean = false;
 
+  productsInBasket!: number;
+
   constructor(private _booksService: BooksService) {}
 
   public ngOnInit(): void {
+    this._booksService.orders.subscribe((products) => {
+      this.productsInBasket = products.length;
+    });
+
+    this.productsInBasket = JSON.parse(window.localStorage.getItem('order') || '[]').length;
+
     this.userLogin = JSON.parse(window.localStorage.getItem('user') || '{}');
 
     this._booksService.loginUser.next(this.userLogin);
