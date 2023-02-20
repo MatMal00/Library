@@ -5,6 +5,7 @@ import { BooksService } from 'src/app/shared/services/books.service';
 import { Categories } from 'src/app/shared/models/categories.model';
 import { MatDialog } from '@angular/material/dialog';
 import { EditModalComponent } from 'src/app/shared/components/edit-modal/edit-modal.component';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-shop',
@@ -17,10 +18,11 @@ export class ShopComponent {
   categories!: Categories[];
 
   userLogin: any;
+  ids!: string;
 
   array: object[] = [];
 
-  selectFormControl = new FormControl('');
+  selectFormControl: FormControl<string | null> = new FormControl('');
 
   constructor(private booksService: BooksService, public modal: MatDialog) {}
 
@@ -45,17 +47,6 @@ export class ShopComponent {
   }
 
   public addToBasketForBuy(book: Book): void {
-    // let bodyRequest = {
-    //   bookId: bookId,
-    //   userId: this.userLogin.id,
-    // };
-
-    // this.booksService.postOrder(bodyRequest).subscribe({
-    //   next: () => {
-    //     alert('Book has been successfully bought!');
-    //   },
-    // });
-
     this.array.push(book);
 
     window.localStorage.setItem('order', JSON.stringify(this.array));
