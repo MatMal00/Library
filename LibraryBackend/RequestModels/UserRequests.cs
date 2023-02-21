@@ -14,6 +14,6 @@ namespace LibraryBackend.RequestModels
         [EmailAddress]
         public string Email { get; set; }
         [Required]
-        public int RoleId { get; set; }
+        public string RoleName { get; set; }
     }
 }

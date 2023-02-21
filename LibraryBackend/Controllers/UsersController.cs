@@ -55,11 +55,12 @@ namespace LibraryBackend.Controllers
             {
                 return BadRequest();
             }
+            var roles = await _context.Roles.ToListAsync();
 
             userFromDb.FirstName = user.FirstName;
             userFromDb.Lastname = user.Lastname;
             userFromDb.Email = user.Email;
-            userFromDb.RoleId = user.RoleId;
+            userFromDb.RoleId = roles.Find(role => role.RoleName == user.RoleName).Id;
 
             _context.Entry(userFromDb).State = EntityState.Modified;
 
