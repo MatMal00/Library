@@ -40,7 +40,7 @@
           <button class="btn-header-icon" matTooltip="Delete User" (click)="removeFromBasket(order.id)">
             <img src="../../../assets/icons/delete.svg" />
           </button>
-          <button class="btn-header-icon" matTooltip="Go To Payment">
+          <button class="btn-header-icon" matTooltip="Go To Payment" [routerLink]="['/OrderStepper']">
             <img src="../../../assets/icons/payments_FILL0_wght400_GRAD0_opsz24.svg" />
           </button>
         </td>

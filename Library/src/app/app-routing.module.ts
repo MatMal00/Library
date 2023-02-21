@@ -6,7 +6,8 @@ import { ShopComponent } from './modules/shop/shop.component';
 import { LoginComponent } from './modules/authentication/login/login.component';
 import { CreateNewAccountComponent } from './modules/authentication/create-new-account/create-new-account.component';
 import { AdminComponent } from './modules/admin/admin.component';
-import { ShoppingBasketComponent } from './modules/shopping-basket/shopping-basket.component';
+import { ShoppingBasketComponent } from './modules/basket/shopping-basket/shopping-basket.component';
+import { OrderStepperComponent } from './modules/basket/order-stepper/order-stepper.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'ShoppingBasket',
     component: ShoppingBasketComponent,
+  },
+  {
+    path: 'OrderStepper',
+    component: OrderStepperComponent,
   },
   {
     path: 'login',
