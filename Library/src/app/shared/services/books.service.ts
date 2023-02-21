@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subject, EMPTY } from 'rxjs';
 import { Book } from 'src/app/shared/models/book.model';
 import { Categories } from '../models/categories.model';
 import { Users } from '../models/users.model';
@@ -11,6 +11,8 @@ import { Users } from '../models/users.model';
 export class BooksService {
   loginUser: BehaviorSubject<object> = new BehaviorSubject<object>({});
   orders: BehaviorSubject<object[]> = new BehaviorSubject<object[]>([]);
+  sendIdToPayment: BehaviorSubject<number> = new BehaviorSubject<any>(null);
+  sendIdToRent: BehaviorSubject<number> = new BehaviorSubject<any>(null);
 
   constructor(private _http: HttpClient) {}
 

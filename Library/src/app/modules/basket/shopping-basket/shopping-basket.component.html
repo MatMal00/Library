@@ -40,8 +40,23 @@
           <button class="btn-header-icon" matTooltip="Delete User" (click)="removeFromBasket(order.id)">
             <img src="../../../assets/icons/delete.svg" />
           </button>
-          <button class="btn-header-icon" matTooltip="Go To Payment" [routerLink]="['/OrderStepper']">
+          <button
+            *ngIf="!order.isRentable"
+            class="btn-header-icon"
+            matTooltip="Go To Payment"
+            (click)="goToPayment(order.id)"
+            [routerLink]="['/OrderStepperPayment']"
+          >
             <img src="../../../assets/icons/payments_FILL0_wght400_GRAD0_opsz24.svg" />
+          </button>
+          <button
+            *ngIf="order.isRentable"
+            class="btn-header-icon"
+            matTooltip="Rent Book"
+            (click)="goToRent(order.id)"
+            [routerLink]="['/OrderStepperRent']"
+          >
+            <img src="../../../../assets/icons/menu_book_FILL0_wght400_GRAD0_opsz24.svg" />
           </button>
         </td>
       </ng-container>

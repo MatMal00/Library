@@ -42,4 +42,12 @@ export class ShoppingBasketComponent implements OnInit {
 
     this.booksService.orders.next(this.dataSource);
   }
+
+  public goToPayment(orderId: number) {
+    this.booksService.sendIdToPayment.next(orderId);
+  }
+
+  public goToRent(orderId: number) {
+    this.booksService.sendIdToRent.next(orderId);
+  }
 }

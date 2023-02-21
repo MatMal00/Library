@@ -17,7 +17,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { ShoppingBasketComponent } from './modules/basket/shopping-basket/shopping-basket.component';
-import { OrderStepperComponent } from './modules/basket/order-stepper/order-stepper.component';
+import { OrderStepperComponent } from './modules/basket/order-stepper-payment/order-stepper.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { OrderStepperRentComponent } from './modules/basket/order-stepper-rent/order-stepper-rent.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,6 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminComponent,
     ShoppingBasketComponent,
     OrderStepperComponent,
+    OrderStepperRentComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +53,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatDialogModule,
     MatTableModule,
     MatSortModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [
@@ -59,6 +67,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CreateNewAccountComponent,
     AdminComponent,
     OrderStepperComponent,
+    OrderStepperRentComponent,
   ],
 })
 export class AppModule {}

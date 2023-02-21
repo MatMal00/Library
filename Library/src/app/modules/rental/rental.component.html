@@ -36,7 +36,7 @@
       <div class="overlay">
         <img
           *ngIf="userLogin?.id"
-          (click)="rentBook(book.id)"
+          (click)="addToBasketForRent(book)"
           src="../../../assets/icons/favorite_FILL1_wght400_GRAD0_opsz48.svg"
           matTooltip="Rent Book"
         />

@@ -19,6 +19,8 @@ export class RentalComponent implements OnInit {
 
   selectFormControl = new FormControl('');
 
+  array: object[] = [];
+
   constructor(private booksService: BooksService, public modal: MatDialog) {}
 
   public ngOnInit(): void {
@@ -30,26 +32,22 @@ export class RentalComponent implements OnInit {
 
     this.selectFormControl.valueChanges.subscribe((selectedValue: string | null) => {
       this.booksService.getBooks().subscribe((result: Book[]) => {
-        this.books = result.filter((x: Book) => x.isRentable === false && x.categoryName === selectedValue);
+        this.books = result.filter((x: Book) => x.isRentable === true && x.categoryName === selectedValue);
       });
     });
 
     this.booksService.loginUser.subscribe((response: object | null) => {
       this.userLogin = response;
     });
+    this.array = JSON.parse(window.localStorage.getItem('order') || '[]');
   }
 
-  public rentBook(bookId: number): void {
-    let bodyRequest = {
-      bookId: bookId,
-      userId: this.userLogin.id,
-    };
+  public addToBasketForRent(book: Book): void {
+    this.array.push(book);
 
-    this.booksService.postOrder(bodyRequest).subscribe({
-      next: () => {
-        alert('Book has been successfully rented!');
-      },
-    });
+    window.localStorage.setItem('order', JSON.stringify(this.array));
+
+    this.booksService.orders.next(this.array);
   }
 
   public editMode(book: Book): void {
@@ -74,7 +72,7 @@ export class RentalComponent implements OnInit {
 
   private _getBooksForRent(): void {
     this.booksService.getBooks().subscribe((result: Book[]) => {
-      this.books = result.filter((x: Book) => x.isRentable === false);
+      this.books = result.filter((x: Book) => x.isRentable === true);
     });
   }
 }

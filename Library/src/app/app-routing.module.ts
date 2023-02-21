@@ -7,7 +7,8 @@ import { LoginComponent } from './modules/authentication/login/login.component';
 import { CreateNewAccountComponent } from './modules/authentication/create-new-account/create-new-account.component';
 import { AdminComponent } from './modules/admin/admin.component';
 import { ShoppingBasketComponent } from './modules/basket/shopping-basket/shopping-basket.component';
-import { OrderStepperComponent } from './modules/basket/order-stepper/order-stepper.component';
+import { OrderStepperComponent } from './modules/basket/order-stepper-payment/order-stepper.component';
+import { OrderStepperRentComponent } from './modules/basket/order-stepper-rent/order-stepper-rent.component';
 
 const routes: Routes = [
   {
@@ -32,8 +33,12 @@ const routes: Routes = [
     component: ShoppingBasketComponent,
   },
   {
-    path: 'OrderStepper',
+    path: 'OrderStepperPayment',
     component: OrderStepperComponent,
+  },
+  {
+    path: 'OrderStepperRent',
+    component: OrderStepperRentComponent,
   },
   {
     path: 'login',

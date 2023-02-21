@@ -37,10 +37,6 @@ export class EditUserModalComponent {
     private _booksService: BooksService
   ) {}
 
-  ngOnInit(): void {
-    console.log(this.modalValues);
-  }
-
   public save(userId: number): void {
     const form = {
       id: this.modalValues.id,

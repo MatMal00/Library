@@ -29,6 +29,9 @@ export class NavbarComponent implements OnInit {
 
   public signOut(): void {
     this.userLogin = window.localStorage.removeItem('user');
+    this.userLogin = window.localStorage.removeItem('order');
+
     this._booksService.loginUser.next({});
+    this._booksService.orders.next([]);
   }
 }
