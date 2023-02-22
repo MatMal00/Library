@@ -44,6 +44,10 @@ export class BooksService {
     return this._http.post<object>('/api/orders', body);
   }
 
+  public rentedBooksPost(body: object): Observable<object> {
+    return this._http.post<object>('/api/rented', body);
+  }
+
   public getUsers(): Observable<Users[]> {
     return this._http.get<Users[]>('/api/users');
   }

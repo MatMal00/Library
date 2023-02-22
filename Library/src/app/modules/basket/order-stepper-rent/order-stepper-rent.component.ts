@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { BooksService } from 'src/app/shared/services/books.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-stepper-rent',
@@ -10,6 +11,10 @@ import { BooksService } from 'src/app/shared/services/books.service';
 })
 export class OrderStepperRentComponent {
   userLogin: any;
+
+  dataSource: any;
+
+  bookId!: number;
 
   firstFormGroup = this._formBuilder.group({
     firstName: ['', Validators.required],
@@ -28,7 +33,7 @@ export class OrderStepperRentComponent {
     address: ['', Validators.required],
   });
 
-  constructor(private _formBuilder: FormBuilder, private booksService: BooksService) {}
+  constructor(private _formBuilder: FormBuilder, private booksService: BooksService, private _router: Router) {}
 
   public ngOnInit(): void {
     this.booksService.loginUser.subscribe((response: object | null) => {
@@ -37,14 +42,13 @@ export class OrderStepperRentComponent {
   }
 
   public rentBook(): void {
-    let bookId;
 
-    this.booksService.sendIdToRent.subscribe((response) => {
-      bookId = response;
+    this.booksService.sendIdToRent.subscribe((response: number) => {
+      this.bookId = response;
     });
 
     let bodyRequest = {
-      bookId: bookId,
+      bookId: this.bookId,
       userId: this.userLogin.id,
     };
 
@@ -55,11 +59,22 @@ export class OrderStepperRentComponent {
       this.fourthFormGroup.valid &&
       this.fifthFormGroup.valid
     ) {
-      // this.booksService.postOrder(bodyRequest).subscribe({
-      //   next: () => {
-      //     alert('Book has been successfully rent!');
-      //   },
-      // });
+      this.booksService.rentedBooksPost(bodyRequest).subscribe({
+        next: () => {
+          alert('Book has been successfully rent!');
+          this.dataSource = JSON.parse(window.localStorage.getItem('order') || '[]');
+
+          this.dataSource.map((_: any, index: any) => {
+            this.dataSource[index].id === this.bookId && this.dataSource.splice(index, 1);
+          });
+
+          localStorage.setItem('order', JSON.stringify(this.dataSource));
+
+          this.booksService.orders.next(this.dataSource);
+
+          this._router.navigate(['/']);
+        },
+      });
     }
   }
 }

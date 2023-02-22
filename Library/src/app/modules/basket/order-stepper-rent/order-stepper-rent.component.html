@@ -40,7 +40,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Enter a date range</mat-label>
           <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date" />
+            <input formControlName="timeRent" matStartDate placeholder="Start date" />
             <input matEndDate placeholder="End date" />
           </mat-date-range-input>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
