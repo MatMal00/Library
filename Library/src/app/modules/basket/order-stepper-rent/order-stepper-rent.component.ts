@@ -8,6 +8,12 @@ import { Router } from '@angular/router';
   selector: 'app-order-stepper-rent',
   templateUrl: './order-stepper-rent.component.html',
   styleUrls: ['./order-stepper-rent.component.scss'],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { showError: true },
+    },
+  ],
 })
 export class OrderStepperRentComponent {
   userLogin: any;
@@ -23,8 +29,10 @@ export class OrderStepperRentComponent {
     lastName: ['', Validators.required],
   });
   thirdFormGroup = this._formBuilder.group({
-    timeRent: ['', Validators.required],
+    startDate: ['', Validators.required],
+    endDate: ['', Validators.required],
   });
+
   fourthFormGroup = this._formBuilder.group({
     email: ['', Validators.required],
   });
@@ -42,7 +50,6 @@ export class OrderStepperRentComponent {
   }
 
   public rentBook(): void {
-
     this.booksService.sendIdToRent.subscribe((response: number) => {
       this.bookId = response;
     });

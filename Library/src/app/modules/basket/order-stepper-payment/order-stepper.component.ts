@@ -64,7 +64,7 @@ export class OrderStepperComponent implements OnInit {
           alert('Book has been successfully bought!');
           this.dataSource = JSON.parse(window.localStorage.getItem('order') || '[]');
 
-          this.dataSource.map((_: any, index: any) => {
+          this.dataSource.map((_: any, index: number) => {
             this.dataSource[index].id === this.bookId && this.dataSource.splice(index, 1);
           });
 

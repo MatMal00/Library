@@ -34,14 +34,14 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="thirdFormGroup" errorMessage="Time Rent">
+    <mat-step [stepControl]="thirdFormGroup" errorMessage="Time Rent is required">
       <form [formGroup]="thirdFormGroup">
         <ng-template matStepLabel>Time Rent</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Enter a date range</mat-label>
           <mat-date-range-input [rangePicker]="picker">
-            <input formControlName="timeRent" matStartDate placeholder="Start date" />
-            <input matEndDate placeholder="End date" />
+            <input formControlName="startDate" matStartDate placeholder="Start date" required />
+            <input formControlName="endDate" matEndDate placeholder="End date" required />
           </mat-date-range-input>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-date-range-picker #picker></mat-date-range-picker>
